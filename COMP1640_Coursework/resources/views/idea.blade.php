@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>    
+  <style>
     /* Set black background color, white text and some padding */
     footer {
       background-color: black;
@@ -73,7 +74,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="home">iIDEA</a>
     </div>
@@ -81,7 +82,7 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="home">HOME</a></li>
         <li><a href="page">Personal Page</a></li>
-        
+
       </ul>
      <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">Category</button>
@@ -124,18 +125,20 @@ function filterFunction() {
             <button class="btn btn-default" type="button">
               <span class="glyphicon glyphicon-search"></span>
             </button>
-          </span>        
+          </span>
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="user"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+
+        // nut logout
         <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container text-center">    
+<div class="container text-center">
   <div class="row">
     <div class="col-sm-3 well">
       <div class="well">
@@ -161,7 +164,7 @@ function filterFunction() {
             <div class="panel-body">
             <span class="glyphicon glyphicon-eye-open"></span> 200
             <h4><b> Author: Alex </b></h4>
-              <p> Why do we need to study online? While we can just go to school instead during pandemic 
+              <p> Why do we need to study online? While we can just go to school instead during pandemic
               <br>
               <br>
               <span class="glyphicon glyphicon-tags"></span> #OnlineTeaching #SayNotoStudyOnline

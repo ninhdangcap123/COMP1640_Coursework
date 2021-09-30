@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Idea extends Model
 {
     use HasFactory;
+    public function tags(){
+        return $this->hasMany(Tag::class);
+    }
 }

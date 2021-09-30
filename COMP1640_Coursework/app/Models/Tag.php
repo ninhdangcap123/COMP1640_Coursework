@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Tag extends Model
 {
     use HasFactory;
-    public function commentComments(){
-        return $this->hasMany(CommentComment::class);
+    public function ideas(){
+        return $this->hasMany(Idea::class);
     }
 }
