@@ -35,4 +35,6 @@ Route::get('page', function () {
 
 Auth::routes();
 
+Route::resource('ideas', 'IdeaController');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
