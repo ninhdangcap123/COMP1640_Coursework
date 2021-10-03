@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('dob')->nullable();
             $table->unsignedInteger('comment_id')->nullable();
-            $table->string('user_role');
+            $table->string('user_role')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
