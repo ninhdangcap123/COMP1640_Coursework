@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_role',
     ];
 
     /**
@@ -50,5 +51,8 @@ class User extends Authenticatable
     }
     public function commentComments(){
         return $this->hasMany(CommentComment::class);
+    }
+    public function userRoles(){
+        return $this->hasOne(UserRole::class);
     }
 }
