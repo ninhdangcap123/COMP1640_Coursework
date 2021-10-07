@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\COMP1640_Coursework",
+    "\\COMP1640_Coursework\\app",
+    "\\COMP1640_Coursework\\app\\Http",
+    "\\COMP1640_Coursework\\app\\Http\\Controllers",
+    "\\COMP1640_Coursework\\config",
+    "\\COMP1640_Coursework\\database",
+    "\\COMP1640_Coursework\\routes",
+    "\\COMP1640_Coursework\\storage"
+  ],
+  "SelectedNode": "\\COMP1640_Coursework\\.env.example",
+  "PreviewInSolutionExplorer": false
+}
