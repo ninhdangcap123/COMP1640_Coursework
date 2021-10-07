@@ -13,8 +13,14 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        @if(auth()->user()->user_role_id == 1)
 
-                        {{ __('You are normal user') }}
+                        {{ __('You are admin') }}
+                        @endif
+                        @if(auth()->user()->user_role_id == 4)
+
+                        {{ __('You are staff') }}
+                        @endif
                     </div>
                 </div>
             </div>

@@ -49,7 +49,7 @@ class LoginController extends Controller
 
         if(auth()->attempt(array('email' => $validate['email'], 'password' => $validate['password'])))
         {
-            if (auth()->user()->is_admin == 1) {
+            if (auth()->user()->user_role_id == 1) {
                 return redirect()->route('admin.home');
             }
             else
