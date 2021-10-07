@@ -15,24 +15,24 @@
                         @endif
                         @if(auth()->user()->user_role_id == 1)
 
-                        {{ __('You are admin') }}
+                                You are {{ auth()->user()->name }}
                         @endif
 
                         @if(auth()->user()->user_role_id == 4)
 
-                        {{ __('You are staff') }}
+                                You are {{ auth()->user()->name }}
                         @endif
 {{--                        $test = auth()->user()->user_role_id--}}
 {{--                            dd($test);--}}
 
                         @if(auth()->user()->user_role_id == 2)
 
-                        {{ __('You are QAM') }}
+                                You are {{ auth()->user()->name }}
                         @endif
 
                         @if(auth()->user()->user_role_id == 3)
 
-                        {{ __('You are QAC') }}
+                                You are {{ auth()->user()->name }}
                         @endif
                     </div>
                 </div>
