@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 //
 //Route::get('user', function () {
 //    return view('user');
@@ -43,6 +43,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('staff/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
+Route::get('home', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/login', function(){
+   return view('auth.login');
+})->name('login');
+
 Route::get('admin/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('admin.home')
-    ->middleware('is_admin');
+    ->middleware('isAdmin');
+
+Route::get('staff/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('staff.home')
+    ->middleware('isStaff');
+
+Route::get('qam/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qam.home')
+    ->middleware('isQAM');
+
+Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
+    ->middleware('isQAC');

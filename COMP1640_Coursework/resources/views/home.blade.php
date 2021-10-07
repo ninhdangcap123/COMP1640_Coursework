@@ -17,13 +17,28 @@
 
                         {{ __('You are admin') }}
                         @endif
+
                         @if(auth()->user()->user_role_id == 4)
 
                         {{ __('You are staff') }}
+                        @endif
+{{--                        $test = auth()->user()->user_role_id--}}
+{{--                            dd($test);--}}
+
+                        @if(auth()->user()->user_role_id == 2)
+
+                        {{ __('You are QAM') }}
+                        @endif
+
+                        @if(auth()->user()->user_role_id == 3)
+
+                        {{ __('You are QAC') }}
                         @endif
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 @endsection
+

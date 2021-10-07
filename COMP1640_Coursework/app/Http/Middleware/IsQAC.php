@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsAdmin
+class IsQAC
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->user_role_id == 1)
+        if (auth()->user()->user_role_id == 2)
         {
             return $next($request);
         }
-        return redirect('home')->with('error', "Youre not admin");
+        return redirect('home')->with('error', "Youre not QAC");
     }
 }
