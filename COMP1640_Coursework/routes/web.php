@@ -13,31 +13,56 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Route::get('user', function () {
+//    return view('user');
+//});
+//
+//Route::get('home', function () {
+//    return view('home');
+//});
+//
+//Route::get('idea', function () {
+//    return view('idea');
+//});
+//
+//Route::get('page', function () {
+//    return view('page');
+//});
 
-Route::get('user', function () {
-    return view('user');
-});
 
-Route::get('home', function () {
-    return view('home');
-});
 
-Route::get('idea', function () {
-    return view('idea');
-});
+//Route::resource('ideas', 'IdeaController');
+//Route::resource('categories', 'IdeaController');
+//Route::resource('comments', 'IdeaController');
+//Route::resource('tags', 'IdeaController');
 
-Route::get('page', function () {
-    return view('page');
-});
 
 Auth::routes();
 
-Route::resource('ideas', 'IdeaController');
-Route::resource('categories', 'IdeaController');
-Route::resource('comments', 'IdeaController');
-Route::resource('tags', 'IdeaController');
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('home', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/login', function(){
+   return view('auth.login');
+})->name('login');
+
+Route::get('admin/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('admin.home')
+    ->middleware('isAdmin');
+
+Route::get('staff/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('staff.home')
+    ->middleware('isStaff');
+
+Route::get('qam/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qam.home')
+    ->middleware('isQAM');
+
+Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
+    ->middleware('isQAC');
