@@ -13,31 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Route::get('user', function () {
+//    return view('user');
+//});
+//
+//Route::get('home', function () {
+//    return view('home');
+//});
+//
+//Route::get('idea', function () {
+//    return view('idea');
+//});
+//
+//Route::get('page', function () {
+//    return view('page');
+//});
 
-Route::get('user', function () {
-    return view('user');
-});
 
-Route::get('home', function () {
-    return view('home');
-});
 
-Route::get('idea', function () {
-    return view('idea');
-});
+//Route::resource('ideas', 'IdeaController');
+//Route::resource('categories', 'IdeaController');
+//Route::resource('comments', 'IdeaController');
+//Route::resource('tags', 'IdeaController');
 
-Route::get('page', function () {
-    return view('page');
-});
 
 Auth::routes();
 
-Route::resource('ideas', 'IdeaController');
-Route::resource('categories', 'IdeaController');
-Route::resource('comments', 'IdeaController');
-Route::resource('tags', 'IdeaController');
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('admin/home', [\App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')
+    ->middleware('is_admin');
