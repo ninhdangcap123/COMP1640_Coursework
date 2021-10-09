@@ -20,11 +20,17 @@
     </label><br><br>
     <label for="Password">
         Password:
-        <input type="text" name="password">
+        <input type="password" name="password">
     </label><br><br>
     <label for="Role">
         Role:
-        <input type="number" name="user_role_id">
+        <select name="user_role_id" id="">
+            <option value="2">QAM</option>
+            <option value="3">QAC</option>
+            <option value="4">Staff</option>
+            <option value="5">Guest</option>
+        </select>
+
     </label><br><br>
 {{--    <div class="col-md-2">--}}
 {{--        <div class="form-group">--}}

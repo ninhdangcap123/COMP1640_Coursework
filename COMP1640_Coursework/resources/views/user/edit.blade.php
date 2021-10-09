@@ -24,7 +24,12 @@
     </label><br><br>
     <label for="Role">
         Role:
-        <input type="text" name="user_role_id" value="{{ $user->user_role_id }}">
+        <select name="user_role_id" id="">
+            <option value="2">QAM</option>
+            <option value="3">QAC</option>
+            <option value="4">Staff</option>
+            <option value="5">Guest</option>
+        </select>
     </label><br><br>
     <button type="submit">Edit user</button>
 </form>
