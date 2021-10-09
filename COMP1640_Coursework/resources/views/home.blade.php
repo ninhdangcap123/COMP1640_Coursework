@@ -26,7 +26,7 @@
                                         <td>Role</td>
                                     </tr>
                                     @foreach($users as $user)
-
+                                        @if($user->id > 1)
                                             <tr>
                                                 <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
@@ -39,7 +39,7 @@
                                                 <td>
 
                                             </tr>
-
+                                        @endif
                                     @endforeach
 
                                 </table>
