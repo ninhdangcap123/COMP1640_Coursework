@@ -39,7 +39,7 @@ class CreateUsersSeeder extends Seeder
             [
                 'name' => 'Quality Assurance Coordinator',
                 'email' => 'qac@qac.com',
-                'user_role_id' => '4',
+                'user_role_id' => '3',
                 'password' => $password,
             ],
             [

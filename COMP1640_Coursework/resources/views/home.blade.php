@@ -15,7 +15,7 @@
                         @endif
                         @if(auth()->user()->user_role_id == 1)
 
-                                You are {{ auth()->user()->name }}
+                                You are {{ auth()->user()->name }}/{{auth()->user()->user_role_id}}
                                 <h2>List users</h2>
                                 <a href="{{route('admin.create')}}">Create new user</a> <hr>
                                 <table border="1">
@@ -23,18 +23,23 @@
                                         <td>ID</td>
                                         <td>Name</td>
                                         <td>Email</td>
-                                        <td>Action</td>
+                                        <td>Role</td>
                                     </tr>
                                     @foreach($users as $user)
-                                        <tr>
-                                            <td>{{ $user->id }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>
-                                                <a href="{{route('admin.update',$user->id)}}">Update</a> <br>
-                                                <a href="{{route('admin.delete', $user->id)}}">Delete</a>
-                                            <td>
-                                        </tr>
+
+                                            <tr>
+                                                <td>{{ $user->id }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->user_role_id }}</td>
+{{--                                                <td>{{ $userRoles->level }}</td>--}}
+                                                <td>
+                                                    <a href="{{route('admin.update',$user->id)}}">Update</a> <br>
+                                                    <a href="{{route('admin.delete', $user->id)}}">Delete</a>
+                                                <td>
+
+                                            </tr>
+
                                     @endforeach
 
                                 </table>

@@ -22,6 +22,10 @@
         Password:
         <input type="text" name="password">
     </label><br><br>
+    <label for="Role">
+        Role:
+        <input type="number" name="user_role_id">
+    </label><br><br>
 {{--    <div class="col-md-2">--}}
 {{--        <div class="form-group">--}}
 {{--            <label for="user_role"> Select User: </label>--}}

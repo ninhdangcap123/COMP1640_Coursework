@@ -15,7 +15,6 @@ class CreateTagDetailsTable extends Migration
     {
         Schema::create('tag_details', function (Blueprint $table) {
             $table->id();
-
             $table->timestamps();
         });
     }

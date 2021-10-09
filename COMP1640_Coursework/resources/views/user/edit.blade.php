@@ -20,7 +20,11 @@
     </label><br><br>
     <label for="Password">
         Password:
-        <input type="text" name="password" >
+        <input type="password" name="password" >
+    </label><br><br>
+    <label for="Role">
+        Role:
+        <input type="text" name="user_role_id" value="{{ $user->user_role_id }}">
     </label><br><br>
     <button type="submit">Edit user</button>
 </form>

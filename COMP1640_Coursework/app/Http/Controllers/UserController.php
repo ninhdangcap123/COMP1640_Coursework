@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -18,7 +19,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('home', compact('users',$users));
+        $userRoles = UserRole::all();
+        return view('home', compact('users','userRoles'));
 
     }
 
@@ -29,8 +31,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = User::all();
-        return view('admin.user.create', compact('user', $user));
+        $users = User::all();
+        $userRoles = UserRole::all();
+        return view('user.create', compact('users', 'userRoles'));
     }
 
     /**
@@ -42,9 +45,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->all();
-        $data['password'] = Hash::make($request->password);
-        User::create($data);
+//        $data = $request->all();
+//        $data['password'] = Hash::make($request->password);
+        User::create([
+            'name' => $request->name,
+            'email'=> $request->email,
+            'password' => Hash::make($request->password),
+            'user_role_id' =>$request->user_role_id,
+        ]);
         return redirect()->route('admin.home');
 
     }
@@ -69,7 +77,7 @@ class UserController extends Controller
     public function edit($id){
 
         $user = User::find($id);
-        return view('admin.user.edit', compact('user',$user));
+        return view('user.edit', compact('user',$user));
     }
 
     public function update(Request $request, $id){
@@ -80,6 +88,7 @@ class UserController extends Controller
            'name' => $request->name,
            'email'=> $request->email,
            'password'=> Hash::make($request->password),
+            'user_role_id' => $request->user_role_id,
         ]);
 
         return redirect()->route('admin.home');

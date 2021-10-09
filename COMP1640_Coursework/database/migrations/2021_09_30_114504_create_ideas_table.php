@@ -20,8 +20,8 @@ class CreateIdeasTable extends Migration
             $table->Integer('thumb_points')->nullable();
             $table->integer('views')->nullable();
             $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('tag_id')->nullable();
-            $table->unsignedInteger('category')->nullable();
+//            $table->unsignedInteger('tag_id')->nullable();
+            $table->unsignedInteger('category_id')->nullable();
             $table->timestamps();
         });
     }
