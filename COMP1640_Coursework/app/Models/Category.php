@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    public function ideas()
-    {
-        return $this->hasMany(Idea::class);
-    }
+    protected $fillable = ['name'];
+
 
 }

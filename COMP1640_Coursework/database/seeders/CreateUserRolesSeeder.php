@@ -20,16 +20,16 @@ class CreateUserRolesSeeder extends Seeder
                 'level'=>'1',
             ],
             [
-                'name'=>'Staff',
-                'level'=>'4',
-            ],
-            [
                 'name'=>'Qualitity Assurance Manager',
                 'level'=>'2',
             ],
             [
                 'name'=>'Quality Assurance Coordinator',
                 'level'=>'3',
+            ],
+            [
+                'name'=>'Staff',
+                'level'=>'4',
             ],
             [
                 'name'=>'Guest/Anonymous',

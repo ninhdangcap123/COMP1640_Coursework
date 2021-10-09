@@ -55,16 +55,18 @@ Route::get('/login', function(){
    return view('auth.login');
 })->name('login');
 
-Route::group(['prefix' => 'admin'], function()
+Route::group(['prefix' => 'admin/users'], function()
 {
     Route::group(['middleware' => 'isAdmin'], function(){
-        Route::get('/home', [\App\Http\Controllers\UserController::class, 'index'])->name('admin.home');
-        Route::get('/create', [App\Http\Controllers\UserController::class, 'create'])->name('admin.create');
-        Route::get('/', [App\Http\Controllers\UserController::class, 'index']);
-        Route::post('/create', [App\Http\Controllers\UserController::class, 'store'])->name('admin.store');
-        Route::get('/update/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('admin.edit');
-        Route::post('/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('admin.update');
-        Route::get('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.delete');
+
+            Route::get('/home', [\App\Http\Controllers\UserController::class, 'index'])->name('admin.home');
+            Route::get('/create', [App\Http\Controllers\UserController::class, 'create'])->name('admin.create');
+            Route::get('/', [App\Http\Controllers\UserController::class, 'index']);
+            Route::post('/create', [App\Http\Controllers\UserController::class, 'store'])->name('admin.store');
+            Route::get('/update/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('admin.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('admin.update');
+            Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.delete');
+
     });
 
 });
@@ -72,8 +74,19 @@ Route::group(['prefix' => 'admin'], function()
 Route::get('staff/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('staff.home')
     ->middleware('isStaff');
 
-Route::get('qam/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qam.home')
-    ->middleware('isQAM');
+Route::group(['prefix'=> 'qam/categories'], function (){
+   Route::group(['middleware'=>'isQAM'], function (){
+
+       Route::get('/home', [\App\Http\Controllers\CategoryController::class, 'index'])->name('qam.home');
+       Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
+       Route::post('/create', [App\Http\Controllers\CategoryController::class, 'store'])->name('qam.store');
+       Route::get('/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('qam.create');
+       Route::delete('/delete/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('qam.delete');
+   });
+});
+
+//Route::get('qam/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qam.home')
+//    ->middleware('isQAM');
 
 Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
     ->middleware('isQAC');

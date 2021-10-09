@@ -9,15 +9,15 @@ class Idea extends Model
 {
     use HasFactory;
     public function categories(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
     public function comments()
     {
-        return $this->belongsTo(Comment::class);
+        return $this->belongsTo(Comment::class,'comment_id');
     }
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }
