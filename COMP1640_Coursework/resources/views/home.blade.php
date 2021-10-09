@@ -16,7 +16,31 @@
                         @if(auth()->user()->user_role_id == 1)
 
                                 You are {{ auth()->user()->name }}
-                        @endif
+                                <h2>List users</h2>
+                                <a href="{{route('admin.create')}}">Create new user</a> <hr>
+                                <table border="1">
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>Name</td>
+                                        <td>Email</td>
+                                        <td>Action</td>
+                                    </tr>
+                                    @foreach($users as $user)
+                                        <tr>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>
+                                                <a href="{{route('admin.update',$user->id)}}">Update</a> <br>
+                                                <a href="{{route('admin.delete', $user->id)}}">Delete</a>
+                                            <td>
+                                        </tr>
+                                    @endforeach
+
+                                </table>
+
+
+                            @endif
 
                         @if(auth()->user()->user_role_id == 4)
 
