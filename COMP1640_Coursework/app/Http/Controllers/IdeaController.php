@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,7 +19,11 @@ class IdeaController extends Controller
     public function index()
     {
         $ideas = Idea::all();
-        return view('idea.index', compact('ideas'));
+        $comments = Comment::all();
+        $categories = Category::all();
+        $users = User::all();
+        return view('ideas.index', compact('ideas',
+            'comments','categories', 'users'));
     }
 
     /**
@@ -28,26 +33,32 @@ class IdeaController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $ideas = Idea::all();
         $comments = Comment::all();
+        $categories = Category::all();
         $users = User::all();
-        return view('idea.create', compact('categories', 'comments', 'users'));
+        $userRoles = User::all();
+        return view('ideas.create', compact('ideas',
+            'comments','categories', 'users','userRoles'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $ideas = $request->all();
+            $ideas = Idea::create([
+                'title' => $request->title,
+                'description' =>$request->description,
+                'user_id'=>$request->user_id,
+                'category_id' => $request->category_id,
 
-        $ideas = Idea::create([
-            'name' => $request->name,
-            'content' => $request->content,
-        ]);
+
+                ]);
+        return redirect()->route('idea.index');
 
 
 

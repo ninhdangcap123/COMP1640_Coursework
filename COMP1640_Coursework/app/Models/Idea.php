@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Idea extends Model
 {
     use HasFactory;
+    protected $fillable = [
+      'title',
+      'description',
+        'user_id',
+        'category_id',
+
+
+    ];
     public function categories(){
         return $this->belongsTo(Category::class, 'category_id');
     }
@@ -19,5 +27,7 @@ class Idea extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+
 
 }

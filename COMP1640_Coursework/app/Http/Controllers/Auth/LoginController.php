@@ -51,10 +51,10 @@ class LoginController extends Controller
             switch (auth()->user()->user_role_id) {
 
                 case 1:
-                    return redirect()->route('admin.home');
+                    return redirect()->route('home');
 
                 case 2:
-                    return redirect()->route('qam.home');
+                    return redirect()->route('home');
 
                 case 3:
                     return redirect()->route('qac.home');

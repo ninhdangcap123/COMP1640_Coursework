@@ -20,7 +20,7 @@ class CategoryController extends Controller
         $categories = Category::all();
         $users = User::all();
         $userRoles = UserRole::all();
-        return view('home', compact('categories','userRoles','users'));
+        return view('category.index', compact('categories','userRoles','users'));
     }
 
     /**
@@ -30,7 +30,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-
         return view('category.create');
     }
 
@@ -38,7 +37,7 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {

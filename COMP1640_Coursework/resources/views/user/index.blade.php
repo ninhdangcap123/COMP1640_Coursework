@@ -1,38 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<h2>List users</h2>
+@extends('layouts.app')
+@section('content')
 <a href="{{route('admin.create')}}">Create new user</a> <hr>
 <table border="1">
     <tr>
         <td>ID</td>
         <td>Name</td>
         <td>Email</td>
-        <td>Action</td>
+        <td>Role</td>
+        <td>Department</td>
     </tr>
     @foreach($users as $user)
+        @if($user->id > 1)
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->userRoles->name }}</td>
+                <td>{{$user->departments->name}}</td>
 
-        <tr>
-            <td>{{ $user->id }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
+                <td>
+                    <a href="{{route('admin.update', $user->id)}}">Update</a> <br>
+                                       <form action="{{ route('admin.delete', $user->id) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    </form>
+                <td>
 
-            <td>
-                <a href="{{route('admin.update',$user->id)}}">Update</a> <br>
-                <a href="{{route('admin.delete', $user->id)}}">Delete</a>
-            <td>
-
-        </tr>
-
-    @endforeach
-
-</table>
-
-</body>
-</html>
+            </tr>
+@endif
+@endforeach
+@endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
@@ -20,7 +21,9 @@ class UserController extends Controller
     {
         $users = User::all();
         $userRoles = UserRole::all();
-        return view('home', compact('users','userRoles'));
+        $departments = Department::all();
+        return view('user.index', compact('users',
+            'userRoles','departments'));
 
     }
 

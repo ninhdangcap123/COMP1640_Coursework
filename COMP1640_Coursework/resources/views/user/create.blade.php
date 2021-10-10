@@ -32,15 +32,17 @@
         </select>
 
     </label><br><br>
-{{--    <div class="col-md-2">--}}
-{{--        <div class="form-group">--}}
-{{--            <label for="user_role"> Select User: </label>--}}
-{{--            <select disabled="disabled" class="form-control select" id="user_type">--}}
-{{--                <option value="">{{ strtoupper($user->name) }}</option>--}}
-{{--                @dd(auth()->user()->user_role_id);--}}
-{{--            </select>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <label for="Role">
+       Department:
+        <select name="department_id" id="">
+            <option value="2">QAM</option>
+            <option value="3">QAC</option>
+            <option value="4">Staff</option>
+            <option value="5">Guest</option>
+        </select>
+
+    </label><br><br>
+
     <button type="submit">Create user</button>
 </form>
 </body>

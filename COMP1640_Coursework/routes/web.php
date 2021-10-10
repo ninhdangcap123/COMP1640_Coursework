@@ -68,7 +68,6 @@ Route::group(['prefix' => 'admin/users'], function()
             Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.delete');
 
     });
-
 });
 
 Route::get('staff/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('staff.home')
@@ -90,3 +89,11 @@ Route::group(['prefix'=> 'qam/categories'], function (){
 
 Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
     ->middleware('isQAC');
+
+Route::group(['prefix' => 'ideas'], function (){
+    Route::get('/home', [\App\Http\Controllers\IdeaController::class,'index'])->name('idea.index');
+    Route::post('/create', [App\Http\Controllers\IdeaController::class, 'store'])->name('idea.store');
+    Route::get('/create', [App\Http\Controllers\IdeaController::class, 'create'])->name('idea.create');
+    Route::delete('/delete/{id}', [\App\Http\Controllers\IdeaController::class, 'destroy'])->name('idea.delete');
+
+});

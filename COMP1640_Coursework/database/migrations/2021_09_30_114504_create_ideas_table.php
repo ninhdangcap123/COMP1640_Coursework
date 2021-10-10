@@ -15,14 +15,15 @@ class CreateIdeasTable extends Migration
     {
         Schema::create('ideas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('content');
+            $table->string('title');
+            $table->string('description');
             $table->Integer('thumb_points')->nullable();
             $table->integer('views')->nullable();
             $table->unsignedInteger('user_id')->nullable();
 //            $table->unsignedInteger('tag_id')->nullable();
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('comment_id')->nullable();
+
             $table->timestamps();
         });
     }
