@@ -37,6 +37,49 @@ class CreateIdeasSeeder extends Seeder
                 'created_at' => now(),
 
             ],
+            [
+                'title' => 'Idea2',
+                'description' => 'nen tang luong',
+                'thumb_points' => '11',
+                'views' => '12',
+                'user_id' => '4',
+                'category_id'=>'2',
+                'comment_id'=>'1',
+                'created_at' => now(),
+
+            ],
+            [
+                'title' => 'Idea2',
+                'description' => 'nen tang luong',
+                'thumb_points' => '11',
+                'views' => '12',
+                'user_id' => '4',
+                'category_id'=>'2',
+                'comment_id'=>'1',
+                'created_at' => now(),
+
+            ],
+            [
+                'title' => 'Idea2',
+                'description' => 'nen tang luong',
+                'thumb_points' => '11',
+                'views' => '12',
+                'user_id' => '4',
+                'category_id'=>'2',
+                'comment_id'=>'1',
+                'created_at' => now(),
+
+            ],[
+                'title' => 'Idea2',
+                'description' => 'nen tang luong',
+                'thumb_points' => '11',
+                'views' => '12',
+                'user_id' => '4',
+                'category_id'=>'2',
+                'comment_id'=>'1',
+                'created_at' => now(),
+
+            ],
 
         ];
         DB::table('ideas')->insert($ideas);

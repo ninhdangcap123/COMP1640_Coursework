@@ -18,7 +18,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::all();
+        $ideas = Idea::orderBy('created_at', 'DESC')->paginate(5);
         $comments = Comment::all();
         $categories = Category::all();
         $users = User::all();

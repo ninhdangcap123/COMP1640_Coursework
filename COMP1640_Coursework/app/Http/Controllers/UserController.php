@@ -36,7 +36,9 @@ class UserController extends Controller
     {
         $users = User::all();
         $userRoles = UserRole::all();
-        return view('user.create', compact('users', 'userRoles'));
+        $departments = Department::all();
+        return view('user.create', compact('users'
+            , 'userRoles','departments'));
     }
 
     /**
@@ -48,13 +50,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-//        $data = $request->all();
-//        $data['password'] = Hash::make($request->password);
         User::create([
             'name' => $request->name,
             'email'=> $request->email,
             'password' => Hash::make($request->password),
             'user_role_id' =>$request->user_role_id,
+            'department_id'=>$request->department_id,
         ]);
         return redirect()->route('admin.home');
 

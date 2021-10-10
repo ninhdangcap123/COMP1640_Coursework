@@ -11,10 +11,11 @@
             <td>Views</td>
             <td>Thumb points</td>
 {{--            <td>Comments</td>--}}
-{{--            <td>Departments</td>--}}
+            <td>Departments</td>
             <td>Created at</td>
 
         </tr>
+
         @foreach($ideas as $idea)
         <tr>
             <td>{{$idea->id}}</td>
@@ -25,13 +26,12 @@
             <td>{{$idea->views}}</td>
             <td>{{$idea->thumb_points}}</td>
 {{--            <td>{{$idea->comments->content}}</td>--}}
-{{--            <td>{{$idea->departments->name}}</td>--}}
+            <td>{{$idea->users->departments->name}}</td>
             <td>{{$idea->created_at}}</td>
 
 
         </tr>
         @endforeach
-
-
-
+    </table>
+            {!! $ideas->links() !!}
 @endsection

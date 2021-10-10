@@ -35,10 +35,9 @@
     <label for="Role">
        Department:
         <select name="department_id" id="">
-            <option value="2">QAM</option>
-            <option value="3">QAC</option>
-            <option value="4">Staff</option>
-            <option value="5">Guest</option>
+            @foreach($departments as $department)
+                <option value="{{$department->id}}">{{$department->name}}</option>
+            @endforeach
         </select>
 
     </label><br><br>
