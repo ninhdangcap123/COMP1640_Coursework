@@ -89,11 +89,14 @@ class IdeaController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Idea  $idea
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(Idea $idea)
+    public function edit($id)
     {
-        //
+        $idea = Idea::find($id);
+        $categories = Category::all();
+        return view('ideas.edit', compact('idea',
+        'categories'));
     }
 
     /**
@@ -101,21 +104,32 @@ class IdeaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Idea  $idea
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Idea $idea)
+    public function update(Request $request, $id)
     {
-        //
+        $idea = Idea::find($id);
+
+        $idea->update([
+            'title' => $request->title,
+            'description'=> $request->description,
+            'user_id'=> $request->user_id,
+            'category_id' => $request->category_id,
+        ]);
+
+        return redirect()->route('idea.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Idea  $idea
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Idea $idea)
+    public function destroy($id)
     {
-        //
+        $idea = Idea::find($id);
+        $idea->delete();
+        return redirect()->route('idea.index');
     }
 }

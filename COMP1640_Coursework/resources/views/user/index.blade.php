@@ -19,8 +19,11 @@
                 <td>{{$user->departments->name}}</td>
 
                 <td>
-                    <a href="{{route('admin.update', $user->id)}}">Update</a> <br>
-                                       <form action="{{ route('admin.delete', $user->id) }}" method="POST">
+                    <form action="{{ route('admin.update', $user->id) }}" >
+                        <button type="submit" class="btn btn-outline-primary">Update</button>
+                    </form>
+{{--                    <a href="{{route('admin.update', $user->id)}}">Update</a> <br>--}}
+                    <form action="{{ route('admin.delete', $user->id) }}" method="POST">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-outline-danger">Delete</button>

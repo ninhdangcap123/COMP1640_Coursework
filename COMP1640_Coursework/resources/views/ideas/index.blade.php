@@ -30,6 +30,21 @@
 {{--            <td>{{$idea->comments->content}}</td>--}}
             <td>{{$idea->users->departments->name}}</td>
             <td>{{$idea->created_at}}</td>
+            <td>
+                @if(auth()->user()->user_role_id == 1 || auth()->user()->id == $idea->user_id)
+                <form action="{{ route('idea.edit', $idea->id) }}" >
+                    <button type="submit" class="btn btn-outline-primary">Update</button>
+                </form>
+                @endif
+                @if(auth()->user()->user_role_id == 1 || auth()->user()->id == $idea->user_id)
+{{--                <a href="{{route('idea.edit', $idea->id)}}">Update</a> <br>--}}
+                <form action="{{ route('idea.delete', $idea->id) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+                @endif
+            <td>
 
 
         </tr>

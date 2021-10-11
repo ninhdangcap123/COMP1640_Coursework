@@ -94,6 +94,8 @@ Route::group(['prefix' => 'ideas'], function (){
     Route::get('/home', [\App\Http\Controllers\IdeaController::class,'index'])->name('idea.index');
     Route::post('/create', [App\Http\Controllers\IdeaController::class, 'store'])->name('idea.store');
     Route::get('/create', [App\Http\Controllers\IdeaController::class, 'create'])->name('idea.create');
+    Route::get('/update/{id}', [App\Http\Controllers\IdeaController::class, 'edit'])->name('idea.edit');
+    Route::post('/update/{id}', [App\Http\Controllers\IdeaController::class, 'update'])->name('idea.update');
     Route::delete('/delete/{id}', [\App\Http\Controllers\IdeaController::class, 'destroy'])->name('idea.delete');
 
 });
