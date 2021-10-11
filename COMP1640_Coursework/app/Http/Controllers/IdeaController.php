@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class IdeaController extends Controller
 {
@@ -55,9 +56,18 @@ class IdeaController extends Controller
                 'description' =>$request->description,
                 'user_id'=>$request->user_id,
                 'category_id' => $request->category_id,
-
-
+//                'document' =>$request->file('document'),
                 ]);
+
+        if ($request->hasFile('document')) {
+            $document = $request->document;
+            $document_new_name = time() . '.' . $document->getClientOriginalExtension();
+            $document->move('storage/document/', $document_new_name);
+            $ideas->document = '/storage/document/' . $document_new_name;
+            $ideas->save();
+//        $path = Storage::putFile($request->file('document'));
+        }
+
         return redirect()->route('idea.index');
 
 

@@ -8,6 +8,7 @@
             <td>Description</td>
             <td>Author</td>
             <td>Category</td>
+            <td>Document</td>
             <td>Views</td>
             <td>Thumb points</td>
 {{--            <td>Comments</td>--}}
@@ -23,6 +24,7 @@
             <td>{{$idea->description}}</td>
             <td>{{$idea->users->name}}</td>
             <td>{{$idea->categories->name}}</td>
+            <td>{{$idea->document}}</td>
             <td>{{$idea->views}}</td>
             <td>{{$idea->thumb_points}}</td>
 {{--            <td>{{$idea->comments->content}}</td>--}}
@@ -33,5 +35,8 @@
         </tr>
         @endforeach
     </table>
-            {!! $ideas->links() !!}
+    <div class="card-footer d-flex justify-content">
+        {{ $ideas->links() }}
+    </div>
+
 @endsection

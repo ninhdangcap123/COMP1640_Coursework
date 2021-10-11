@@ -23,7 +23,7 @@ class CreateIdeasTable extends Migration
 //            $table->unsignedInteger('tag_id')->nullable();
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('comment_id')->nullable();
-
+            $table->string('document')->nullable();
             $table->timestamps();
         });
     }

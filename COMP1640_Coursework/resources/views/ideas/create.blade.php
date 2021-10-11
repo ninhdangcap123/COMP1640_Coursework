@@ -10,7 +10,7 @@
 </head>
 <body>
 <h2>Create Idea</h2>
-<form action="{{route('idea.store')}}" method="post">
+<form action="{{route('idea.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <label for="title">
         Title:
@@ -38,8 +38,20 @@
         @endforeach
         </select>
     </label><br>
+    <label for="Document">
+        Select file to upload:
+        <input type="file" name="document">
+    </label><br>
+{{--    <div class="form-group">--}}
+{{--        <label for="document">Document:</label>--}}
+{{--        <div class="custom-file">--}}
+{{--            <input type="file" name="document" class="custom-file-input" id="document">--}}
+{{--            <label class="custom-file-label" for="document">Choose file</label>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <button type="submit">Create idea</button>
+
 </form>
 </body>
 </html>

@@ -13,7 +13,7 @@ class Idea extends Model
       'description',
         'user_id',
         'category_id',
-
+        'document',
 
     ];
     public function categories(){
