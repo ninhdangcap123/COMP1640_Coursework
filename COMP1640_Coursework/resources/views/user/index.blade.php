@@ -20,6 +20,7 @@
 
                 <td>
                     <form action="{{ route('admin.update', $user->id) }}" >
+
                         <button type="submit" class="btn btn-outline-primary">Update</button>
                     </form>
 {{--                    <a href="{{route('admin.update', $user->id)}}">Update</a> <br>--}}

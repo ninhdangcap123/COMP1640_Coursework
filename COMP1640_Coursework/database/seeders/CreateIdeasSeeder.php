@@ -22,7 +22,7 @@ class CreateIdeasSeeder extends Seeder
               'views' => '10',
               'user_id' => '4',
               'category_id'=>'1',
-              'comment_id'=>'1',
+//              'comment_id'=>'1',
               'created_at' => now(),
               'document' => 'test',
 
@@ -34,7 +34,7 @@ class CreateIdeasSeeder extends Seeder
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
-                'comment_id'=>'1',
+//                'comment_id'=>'1',
                 'created_at' => now(),
                 'document' => 'test',
 
@@ -46,7 +46,7 @@ class CreateIdeasSeeder extends Seeder
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
-                'comment_id'=>'1',
+//                'comment_id'=>'1',
                 'created_at' => now(),
                 'document' => 'test',
 
@@ -58,7 +58,7 @@ class CreateIdeasSeeder extends Seeder
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
-                'comment_id'=>'1',
+//                'comment_id'=>'1',
                 'created_at' => now(),
                 'document' => 'test',
 
@@ -70,7 +70,7 @@ class CreateIdeasSeeder extends Seeder
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
-                'comment_id'=>'1',
+//                'comment_id'=>'1',
                 'created_at' => now(),
                 'document' => 'test',
 
@@ -81,7 +81,7 @@ class CreateIdeasSeeder extends Seeder
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
-                'comment_id'=>'1',
+//                'comment_id'=>'1',
                 'created_at' => now(),
                 'document' => 'test',
 

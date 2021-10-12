@@ -58,7 +58,7 @@ class IdeaController extends Controller
                 'category_id' => $request->category_id,
 //                'document' =>$request->file('document'),
                 ]);
-
+//        $ideas->categories()->attach($request->categories);
         if ($request->hasFile('document')) {
             $document = $request->document;
             $document_new_name = time() . '.' . $document->getClientOriginalExtension();
@@ -78,11 +78,14 @@ class IdeaController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Idea  $idea
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(Idea $idea)
+    public function show($id)
     {
-        //
+        $idea = Idea::find($id);
+        $comment = $idea->comment;
+        return view('ideas.show', compact('idea',
+            'comment'));
     }
 
     /**

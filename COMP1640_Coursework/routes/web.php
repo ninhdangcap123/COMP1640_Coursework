@@ -97,5 +97,10 @@ Route::group(['prefix' => 'ideas'], function (){
     Route::get('/update/{id}', [App\Http\Controllers\IdeaController::class, 'edit'])->name('idea.edit');
     Route::post('/update/{id}', [App\Http\Controllers\IdeaController::class, 'update'])->name('idea.update');
     Route::delete('/delete/{id}', [\App\Http\Controllers\IdeaController::class, 'destroy'])->name('idea.delete');
+    Route::get('/show/{id}',[\App\Http\Controllers\IdeaController::class, 'show'])->name('idea.show');
+});
 
+Route::group(['prefix' => 'comments'],function (){
+   Route::post('/create',[\App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
+   Route::post('/reply/store', [\App\Http\Controllers\CommentController::class, 'replyStore'])->name('comment.reply.store');
 });

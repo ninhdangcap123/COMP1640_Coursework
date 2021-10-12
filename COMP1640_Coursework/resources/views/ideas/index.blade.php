@@ -12,6 +12,7 @@
             <td>Views</td>
             <td>Thumb points</td>
 {{--            <td>Comments</td>--}}
+{{--            <td>Comments</td>--}}
             <td>Departments</td>
             <td>Created at</td>
 
@@ -28,6 +29,7 @@
             <td>{{$idea->views}}</td>
             <td>{{$idea->thumb_points}}</td>
 {{--            <td>{{$idea->comments->content}}</td>--}}
+{{--            <td>{{$idea->comments->content}}</td>--}}
             <td>{{$idea->users->departments->name}}</td>
             <td>{{$idea->created_at}}</td>
             <td>
@@ -43,7 +45,12 @@
                     @method('delete')
                     <button type="submit" class="btn btn-outline-danger">Delete</button>
                 </form>
-                @endif
+                    @endif
+                        <form action="{{ route('idea.show', $idea->id) }}" >
+
+                            <button type="submit" class="btn btn-outline-secondary">Show</button>
+                        </form>
+
             <td>
 
 

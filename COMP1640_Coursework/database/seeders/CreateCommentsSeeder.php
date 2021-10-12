@@ -14,13 +14,16 @@ class CreateCommentsSeeder extends Seeder
      */
     public function run()
     {
-        $comments = [
-            [
-                'content'=>'Hay vl',
-                'user_id'=>'4',
 
-            ]
-        ];
-        DB::table('comments')->insert($comments);
-    }
+//        DB::table('comments')->insert($comments);
+        foreach ((range(1, 6)) as $index) {
+            DB::table('comments')->insert(
+                [
+                    'user_id' => rand(1, 6),
+                    'content' => 'test',
+                    'commentable_id' => rand(1, 6),
+                    'commentable_type' => rand(0, 1) == 1 ? 'App\Models\Idea' : 'App\Models\User'
+                ]
+            );
+    }}
 }

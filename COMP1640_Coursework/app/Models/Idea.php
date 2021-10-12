@@ -21,7 +21,7 @@ class Idea extends Model
     }
     public function comments()
     {
-        return $this->belongsTo(Comment::class,'comment_id');
+        return $this->morphMany(Comment::class,'commentable')->whereNull('parent_id');
     }
     public function users()
     {
