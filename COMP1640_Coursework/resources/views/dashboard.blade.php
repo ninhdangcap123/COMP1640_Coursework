@@ -31,10 +31,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="home">Home</a></li>
-<<<<<<< Updated upstream
-=======
         <li><a href="idea">Dashboard</a></li>
->>>>>>> Stashed changes
         <li><a href="page">Personal Page</a></li>
         <li><a href="idea">Ideas</a></li>
       </ul>
@@ -55,54 +52,27 @@
     </div>
   </div>
 </nav>
-
-<div class="container text-center">    
-  <div class="row">
-    <div class="col-sm-3 well">
+    <div class="col-sm-9">
       <div class="well">
-        <p><a href="user">My Profile</a></p>
-        <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+        <h4>Total Ideas</h4>
+        <p>... Ideas</p>
       </div>
-      <div class="well">
-        <p><a href="#">Interests</a></p>
-        <p>
-          <span class="label label-primary">School</span>
-          <span class="label label-success">Business</span>
-          <span class="label label-info">Football</span>
-          <span class="label label-warning">Gaming</span>
-          <span class="label label-danger">Friends</span>
-        </p>
-      </div>
-    </div>
-
-    <div class="col-sm-7">
       <div class="row">
-        <div class="col-sm-12">
-          <div class="panel panel-default text-left">
-            <div class="panel-body">
-            <span class="glyphicon glyphicon-eye-open"></span> 200
-            <h4><b> Author: Alex </b></h4>
-              <p> Why do we need to study online? While we can just go to school instead during pandemic 
-              <br>
-              <br>
-              <span class="glyphicon glyphicon-tags"></span> #OnlineTeaching #SayNotoStudyOnline
-              <br>
-              <br>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up"></span> Like
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-down"></span> Dislike
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-download"></span> Download
-              </button>
-              <div class="row comment-box-main p-3 rounded-bottom">
-<div class="col-md-9 col-sm-9 col-9 pr-0 comment-box">
-<input type="text" class="form-control" placeholder="Comment ...." />
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Most Liked Idea</h4>
+            <p> 120 <span class="glyphicon glyphicon-thumbs-up"></span> </p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Most Viewed Idea</h4>
+            <p> <span class="glyphicon glyphicon-eye-open"></span> 600 </p> 
+          </div>
+        </div>
+        </div>
+      </div>
 </div>
-<div class="col-md-3 col-sm-2 col-2 pl-0 text-center send-btn">
-<button class="btn btn-info">Send</button>
-</div>
+
 </body>
 </html>

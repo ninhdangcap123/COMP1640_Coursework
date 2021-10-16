@@ -29,9 +29,17 @@ Route::get('idea', function () {
     return view('idea');
 });
 
+<<<<<<< Updated upstream
 Route::get('page', function () {
     return view('page');
 });
+=======
+
+
+
+Route::get('admin/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('admin.home')
+    ->middleware('isAdmin');
+>>>>>>> Stashed changes
 
 Auth::routes();
 
