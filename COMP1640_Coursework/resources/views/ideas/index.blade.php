@@ -15,6 +15,7 @@
 {{--            <td>Comments</td>--}}
             <td>Departments</td>
             <td>Created at</td>
+            <td>Download</td>
 
         </tr>
 
@@ -25,13 +26,15 @@
             <td>{{$idea->description}}</td>
             <td>{{$idea->users->name}}</td>
             <td>{{$idea->categories->name}}</td>
-            <td>{{$idea->document}}</td>
+            <td><a href="{{ route('idea.download', $idea->uuid) }}">{{ $idea->document }}</a></td>
             <td>{{$idea->views}}</td>
             <td>{{$idea->thumb_points}}</td>
 {{--            <td>{{$idea->comments->content}}</td>--}}
 {{--            <td>{{$idea->comments->content}}</td>--}}
             <td>{{$idea->users->departments->name}}</td>
             <td>{{$idea->created_at}}</td>
+
+{{--            <a href="{{ route('idea.download', $idea->uuid) }}">{{ $idea->document }}</a>--}}
             <td>
                 @if(auth()->user()->user_role_id == 1 || auth()->user()->id == $idea->user_id)
                 <form action="{{ route('idea.edit', $idea->id) }}" >

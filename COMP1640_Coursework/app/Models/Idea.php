@@ -5,12 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static create( array $document )
+ */
 class Idea extends Model
 {
     use HasFactory;
     protected $fillable = [
       'title',
       'description',
+        'uuid',
         'user_id',
         'category_id',
         'document',

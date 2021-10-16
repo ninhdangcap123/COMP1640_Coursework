@@ -13,16 +13,10 @@
                     </p>
 
                     <p>
-                        Related document: {{$idea->document}}
+                        Related document:<a href="{{ route('idea.download', $idea->uuid) }}">{{ $idea->document }}</a>
                     </p>
                     <div></div>
                     <h4>Display Comments</h4>
-{{--                    @foreach($idea->comments as $comment)--}}
-{{--                        <div class="display-comment">--}}
-{{--                            <strong>{{ $comment->users->name }}</strong>--}}
-{{--                            <p>{{ $comment->content }}</p>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
                     @include('comment.replies', ['comments' => $idea->comments, 'idea_id' => $idea->id])
                     <hr />
 

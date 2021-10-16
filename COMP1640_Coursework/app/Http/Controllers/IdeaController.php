@@ -9,6 +9,7 @@ use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Webpatser\Uuid\Uuid;
 
 class IdeaController extends Controller
 {
@@ -46,32 +47,26 @@ class IdeaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function store(Request $request)
     {
-            $ideas = Idea::create([
-                'title' => $request->title,
-                'description' =>$request->description,
-                'user_id'=>$request->user_id,
-                'category_id' => $request->category_id,
-//                'document' =>$request->file('document'),
-                ]);
-//        $ideas->categories()->attach($request->categories);
+        $idea = $request->all();
+        $idea['uuid'] = (string)Uuid::generate();
         if ($request->hasFile('document')) {
-            $document = $request->document;
-            $document_new_name = time() . '.' . $document->getClientOriginalExtension();
-            $document->move('storage/document/', $document_new_name);
-            $ideas->document = '/storage/document/' . $document_new_name;
-            $ideas->save();
-//        $path = Storage::putFile($request->file('document'));
+            $idea['document'] = $request->document->getClientOriginalName();
+            $request->document->storeAs('ideas', $idea['document']);
         }
+        Idea::create($idea);
 
         return redirect()->route('idea.index');
-
-
-
+    }
+    public function fileDownload($uuid){
+        $idea = Idea::where('uuid', $uuid)->firstOrFail();
+        $pathToFile = storage_path('app/ideas/' . $idea->document);
+        return response()->download($pathToFile);
     }
 
     /**c
