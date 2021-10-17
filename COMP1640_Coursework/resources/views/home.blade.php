@@ -34,6 +34,7 @@
                         @if(auth()->user()->user_role_id == 3)
 
                                 You are {{ auth()->user()->name }}
+{{--                                <div> <a href="{{route('qac.home')}}">List Departments</a></div>--}}
                         @endif
 
                         <div><a href="{{route('idea.index')}}">List Ideas</a></div>

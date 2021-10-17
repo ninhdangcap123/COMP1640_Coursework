@@ -70,6 +70,11 @@ Route::group(['prefix' => 'admin/users'], function()
     });
 });
 
+//Route::group(['prefix '=> 'qac/departments'], function (){
+//    Route::group(['middleware'=>'isQAC'],function (){
+//        Route::get('/home', [\App\Http\Controllers\DepartmentController::class, 'index'])->name('qac.home');
+//    });
+//});
 Route::get('staff/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('staff.home')
     ->middleware('isStaff');
 
@@ -87,8 +92,8 @@ Route::group(['prefix'=> 'qam/categories'], function (){
 //Route::get('qam/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qam.home')
 //    ->middleware('isQAM');
 
-Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
-    ->middleware('isQAC');
+//Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
+//    ->middleware('isQAC');
 
 Route::group(['prefix' => 'ideas'], function (){
     Route::get('/home', [\App\Http\Controllers\IdeaController::class,'index'])->name('idea.index');
