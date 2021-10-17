@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +44,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::post('/', function () {
+Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
@@ -54,7 +55,6 @@ Route::get('/home', function () {
 Route::get('/login', function(){
    return view('auth.login');
 })->name('login');
-
 
 Route::group(['prefix' => 'admin/users'], function()
 {
