@@ -43,17 +43,18 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
+Route::post('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('home', function () {
+Route::get('/home', function () {
     return view('home');
 })->name('home');
 
 Route::get('/login', function(){
    return view('auth.login');
 })->name('login');
+
 
 Route::group(['prefix' => 'admin/users'], function()
 {
@@ -70,17 +71,21 @@ Route::group(['prefix' => 'admin/users'], function()
     });
 });
 
-//Route::group(['prefix '=> 'qac/departments'], function (){
-//    Route::group(['middleware'=>'isQAC'],function (){
-//        Route::get('/home', [\App\Http\Controllers\DepartmentController::class, 'index'])->name('qac.home');
-//    });
-//});
+Route::group(['prefix'=> 'qac/departments'], function (){
+    Route::group(['middleware'=>'isQAC'], function (){
+        Route::get('/home', [\App\Http\Controllers\DepartmentController::class, 'index'])->name('qac.home');
+        Route::get('/', [App\Http\Controllers\DepartmentController::class, 'index']);
+        Route::post('/create', [App\Http\Controllers\DepartmentController::class, 'store'])->name('qac.store');
+        Route::get('/create', [App\Http\Controllers\DepartmentController::class, 'create'])->name('qac.create');
+        Route::delete('/delete/{id}', [\App\Http\Controllers\DepartmentController::class, 'destroy'])->name('qac.delete');
+    });
+});
+
 Route::get('staff/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('staff.home')
     ->middleware('isStaff');
 
 Route::group(['prefix'=> 'qam/categories'], function (){
    Route::group(['middleware'=>'isQAM'], function (){
-
        Route::get('/home', [\App\Http\Controllers\CategoryController::class, 'index'])->name('qam.home');
        Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
        Route::post('/create', [App\Http\Controllers\CategoryController::class, 'store'])->name('qam.store');
@@ -94,19 +99,21 @@ Route::group(['prefix'=> 'qam/categories'], function (){
 
 //Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
 //    ->middleware('isQAC');
+Route::group(['middleware'=>'auth'],function (){
+    Route::group(['prefix' => 'ideas'], function (){
+        Route::get('/home', [\App\Http\Controllers\IdeaController::class,'index'])->name('idea.index');
+        Route::post('/create', [App\Http\Controllers\IdeaController::class, 'store'])->name('idea.store');
+        Route::get('/create', [App\Http\Controllers\IdeaController::class, 'create'])->name('idea.create');
+        Route::get('/update/{id}', [App\Http\Controllers\IdeaController::class, 'edit'])->name('idea.edit');
+        Route::post('/update/{id}', [App\Http\Controllers\IdeaController::class, 'update'])->name('idea.update');
+        Route::delete('/delete/{id}', [\App\Http\Controllers\IdeaController::class, 'destroy'])->name('idea.delete');
+        Route::get('/show/{id}',[\App\Http\Controllers\IdeaController::class, 'show'])->name('idea.show');
+        Route::get('/{uuid}/download',[\App\Http\Controllers\IdeaController::class,'fileDownload'])->name('idea.download');
+    });
 
-Route::group(['prefix' => 'ideas'], function (){
-    Route::get('/home', [\App\Http\Controllers\IdeaController::class,'index'])->name('idea.index');
-    Route::post('/create', [App\Http\Controllers\IdeaController::class, 'store'])->name('idea.store');
-    Route::get('/create', [App\Http\Controllers\IdeaController::class, 'create'])->name('idea.create');
-    Route::get('/update/{id}', [App\Http\Controllers\IdeaController::class, 'edit'])->name('idea.edit');
-    Route::post('/update/{id}', [App\Http\Controllers\IdeaController::class, 'update'])->name('idea.update');
-    Route::delete('/delete/{id}', [\App\Http\Controllers\IdeaController::class, 'destroy'])->name('idea.delete');
-    Route::get('/show/{id}',[\App\Http\Controllers\IdeaController::class, 'show'])->name('idea.show');
-    Route::get('/{uuid}/download',[\App\Http\Controllers\IdeaController::class,'fileDownload'])->name('idea.download');
+    Route::group(['prefix' => 'comments'],function (){
+        Route::post('/create',[\App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
+        Route::post('/reply/store', [\App\Http\Controllers\CommentController::class, 'replyStore'])->name('comment.reply.store');
+    });
 });
 
-Route::group(['prefix' => 'comments'],function (){
-   Route::post('/create',[\App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
-   Route::post('/reply/store', [\App\Http\Controllers\CommentController::class, 'replyStore'])->name('comment.reply.store');
-});
