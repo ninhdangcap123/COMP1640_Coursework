@@ -55,14 +55,58 @@ Route::get('/login', function(){
    return view('auth.login');
 })->name('login');
 
-Route::get('admin/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('admin.home')
-    ->middleware('isAdmin');
+Route::group(['prefix' => 'admin/users'], function()
+{
+    Route::group(['middleware' => 'isAdmin'], function(){
 
+            Route::get('/home', [\App\Http\Controllers\UserController::class, 'index'])->name('admin.home');
+            Route::get('/create', [App\Http\Controllers\UserController::class, 'create'])->name('admin.create');
+            Route::get('/', [App\Http\Controllers\UserController::class, 'index']);
+            Route::post('/create', [App\Http\Controllers\UserController::class, 'store'])->name('admin.store');
+            Route::get('/update/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('admin.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('admin.update');
+            Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.delete');
+
+    });
+});
+
+//Route::group(['prefix '=> 'qac/departments'], function (){
+//    Route::group(['middleware'=>'isQAC'],function (){
+//        Route::get('/home', [\App\Http\Controllers\DepartmentController::class, 'index'])->name('qac.home');
+//    });
+//});
 Route::get('staff/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('staff.home')
     ->middleware('isStaff');
 
-Route::get('qam/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qam.home')
-    ->middleware('isQAM');
+Route::group(['prefix'=> 'qam/categories'], function (){
+   Route::group(['middleware'=>'isQAM'], function (){
 
-Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
-    ->middleware('isQAC');
+       Route::get('/home', [\App\Http\Controllers\CategoryController::class, 'index'])->name('qam.home');
+       Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
+       Route::post('/create', [App\Http\Controllers\CategoryController::class, 'store'])->name('qam.store');
+       Route::get('/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('qam.create');
+       Route::delete('/delete/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('qam.delete');
+   });
+});
+
+//Route::get('qam/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qam.home')
+//    ->middleware('isQAM');
+
+//Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
+//    ->middleware('isQAC');
+
+Route::group(['prefix' => 'ideas'], function (){
+    Route::get('/home', [\App\Http\Controllers\IdeaController::class,'index'])->name('idea.index');
+    Route::post('/create', [App\Http\Controllers\IdeaController::class, 'store'])->name('idea.store');
+    Route::get('/create', [App\Http\Controllers\IdeaController::class, 'create'])->name('idea.create');
+    Route::get('/update/{id}', [App\Http\Controllers\IdeaController::class, 'edit'])->name('idea.edit');
+    Route::post('/update/{id}', [App\Http\Controllers\IdeaController::class, 'update'])->name('idea.update');
+    Route::delete('/delete/{id}', [\App\Http\Controllers\IdeaController::class, 'destroy'])->name('idea.delete');
+    Route::get('/show/{id}',[\App\Http\Controllers\IdeaController::class, 'show'])->name('idea.show');
+    Route::get('/{uuid}/download',[\App\Http\Controllers\IdeaController::class,'fileDownload'])->name('idea.download');
+});
+
+Route::group(['prefix' => 'comments'],function (){
+   Route::post('/create',[\App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
+   Route::post('/reply/store', [\App\Http\Controllers\CommentController::class, 'replyStore'])->name('comment.reply.store');
+});

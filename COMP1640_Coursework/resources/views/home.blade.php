@@ -14,9 +14,9 @@
                             </div>
                         @endif
                         @if(auth()->user()->user_role_id == 1)
-
-                                You are {{ auth()->user()->name }}
-                        @endif
+                                You are {{ auth()->user()->name }}/{{auth()->user()->userRoles->name}}
+                                <div><a href="{{route('admin.home')}}">List users</a></div>
+                            @endif
 
                         @if(auth()->user()->user_role_id == 4)
 
@@ -27,13 +27,18 @@
 
                         @if(auth()->user()->user_role_id == 2)
 
-                                You are {{ auth()->user()->name }}
-                        @endif
+                                You are {{ auth()->user()->name }}/{{ auth()->user()->userRoles->name }}
+                                <div> <a href="{{route('qam.home')}}">List Categories</a></div>
+                            @endif
 
                         @if(auth()->user()->user_role_id == 3)
 
                                 You are {{ auth()->user()->name }}
+{{--                                <div> <a href="{{route('qac.home')}}">List Departments</a></div>--}}
                         @endif
+
+                        <div><a href="{{route('idea.index')}}">List Ideas</a></div>
+
                     </div>
                 </div>
             </div>

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'user_role_id',
+        'department_id',
     ];
 
     /**
@@ -42,6 +43,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function userRoles(){
+        return $this->belongsTo(UserRole::class, 'user_role_id');
+    }
+    public function departments(){
+        return $this->belongsTo(Department::class,'department_id');
+    }
+//    public function commentable(){
+//        return $this->morphMany(Comment::class, 'commentable');
+//    }
+
 
 
 }

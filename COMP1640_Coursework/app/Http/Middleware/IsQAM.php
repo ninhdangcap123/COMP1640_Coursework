@@ -16,7 +16,7 @@ class IsQAM
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->user_role_id == 3)
+        if (auth()->user()->user_role_id == 2)
         {
             return $next($request);
         }

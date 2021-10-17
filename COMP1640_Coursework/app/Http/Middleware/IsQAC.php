@@ -16,7 +16,7 @@ class IsQAC
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->user_role_id == 2)
+        if (auth()->user()->user_role_id == 3)
         {
             return $next($request);
         }
