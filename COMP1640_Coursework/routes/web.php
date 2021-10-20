@@ -109,6 +109,8 @@ Route::group(['middleware'=>'auth'],function (){
         Route::delete('/delete/{id}', [\App\Http\Controllers\IdeaController::class, 'destroy'])->name('idea.delete');
         Route::get('/show/{id}',[\App\Http\Controllers\IdeaController::class, 'show'])->name('idea.show');
         Route::get('/{uuid}/download',[\App\Http\Controllers\IdeaController::class,'fileDownload'])->name('idea.download');
+        Route::post('/like-idea/{id}',[\App\Http\Controllers\IdeaController::class,'likeIdea'])->name('idea.like');
+        Route::post('/unlike-idea/{id}',[\App\Http\Controllers\IdeaController::class,'unlikeIdea'])->name('idea.unlike');
     });
 
     Route::group(['prefix' => 'comments'],function (){

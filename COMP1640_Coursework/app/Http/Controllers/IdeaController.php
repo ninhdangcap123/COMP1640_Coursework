@@ -130,4 +130,21 @@ class IdeaController extends Controller
         $idea->delete();
         return redirect()->route('idea.index');
     }
+    public function likeIdea($id)
+    {
+        $idea = Idea::find($id);
+        $idea->like();
+        $idea->save();
+
+        return redirect()->route('idea.show', compact('id'));
+    }
+
+    public function unlikeIdea($id)
+    {
+        $idea =Idea::find($id);
+        $idea->unlike();
+        $idea->save();
+
+        return redirect()->route('idea.show',compact('id'));
+    }
 }
