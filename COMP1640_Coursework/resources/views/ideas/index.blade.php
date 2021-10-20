@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <a href="{{route('idea.create')}}">Create new ideas</a> <hr>
     <table border="1">
         <tr>
@@ -11,9 +12,8 @@
             <td>Document</td>
             <td>Views</td>
             <td>Thumb points</td>
-{{--            <td>Comments</td>--}}
-{{--            <td>Comments</td>--}}
             <td>Departments</td>
+
             <td>Created at</td>
             <td>Download</td>
 
@@ -28,7 +28,7 @@
             <td>{{$idea->categories->name}}</td>
             <td><a href="{{ route('idea.download', $idea->uuid) }}">{{ $idea->document }}</a></td>
             <td>{{$idea->views}}</td>
-            <td>{{$idea->thumb_points}}</td>
+            <td>{{$idea->likeCount}}</td>
 {{--            <td>{{$idea->comments->content}}</td>--}}
 {{--            <td>{{$idea->comments->content}}</td>--}}
             <td>{{$idea->users->departments->name}}</td>
@@ -59,7 +59,11 @@
 
         </tr>
         @endforeach
+
     </table>
+    @if(auth()->user()->user_role_id == 2)
+        <a href="{{route('idea.downloadaszip')}}">Download all documents</a> <hr>
+    @endif
     <div class="card-footer d-flex justify-content">
         {{ $ideas->links() }}
     </div>

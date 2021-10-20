@@ -94,11 +94,7 @@ Route::group(['prefix'=> 'qam/categories'], function (){
    });
 });
 
-//Route::get('qam/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qam.home')
-//    ->middleware('isQAM');
 
-//Route::get('qac/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('qac.home')
-//    ->middleware('isQAC');
 Route::group(['middleware'=>'auth'],function (){
     Route::group(['prefix' => 'ideas'], function (){
         Route::get('/home', [\App\Http\Controllers\IdeaController::class,'index'])->name('idea.index');
@@ -110,6 +106,7 @@ Route::group(['middleware'=>'auth'],function (){
         Route::get('/show/{id}',[\App\Http\Controllers\IdeaController::class, 'show'])->name('idea.show');
         Route::get('/{uuid}/download',[\App\Http\Controllers\IdeaController::class,'fileDownload'])->name('idea.download');
         Route::post('/like-idea/{id}',[\App\Http\Controllers\IdeaController::class,'likeIdea'])->name('idea.like');
+        Route::get('download-zip', [\App\Http\Controllers\IdeaController::class,'downloadAllAsZip'])->name('idea.downloadaszip');
         Route::post('/unlike-idea/{id}',[\App\Http\Controllers\IdeaController::class,'unlikeIdea'])->name('idea.unlike');
     });
 

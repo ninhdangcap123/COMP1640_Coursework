@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
-
+use Illuminate\Support\Facades\File;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 use Webpatser\Uuid\Uuid;
+use ZipArchive;
 
 class IdeaController extends Controller
 {
@@ -146,5 +148,26 @@ class IdeaController extends Controller
         $idea->save();
 
         return redirect()->route('idea.show',compact('id'));
+    }
+    public function downloadAllAsZip(): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+
+        $zip = new ZipArchive;
+
+        $fileName = 'AllFile.zip';
+
+        if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
+        {
+            $files = File::files(public_path('documents'));
+
+            foreach ($files as $key => $value) {
+                $relativeNameInZipFile = basename($value);
+                $zip->addFile($value, $relativeNameInZipFile);
+            }
+
+            $zip->close();
+        }
+
+        return response()->download(public_path($fileName));
     }
 }
