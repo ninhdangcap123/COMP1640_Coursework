@@ -15,6 +15,9 @@
                     <p>
                         Related document:<a href="{{ route('idea.download', $idea->uuid) }}">{{ $idea->document }}</a>
                     </p>
+                    <p>
+                        Total views : {{$idea->views}}
+                    </p>
                     <div>
                         <form action="{{ route('idea.like', $idea->id) }}"
                               method="post">

@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+
 use Illuminate\Support\Facades\File;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
+use Vtiful\Kernel\Excel;
 use Webpatser\Uuid\Uuid;
 use ZipArchive;
 
@@ -80,6 +83,10 @@ class IdeaController extends Controller
     public function show($id)
     {
         $idea = Idea::find($id);
+//        $idea->update([
+//            'views' => $idea->views + 1
+//        ]);
+        $idea->increment('views');
         $comment = $idea->comment;
         return view('ideas.show', compact('idea',
             'comment'));
@@ -170,4 +177,25 @@ class IdeaController extends Controller
 
         return response()->download(public_path($fileName));
     }
+    public static function writeArrayToCsvFile() : \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+        $table = Idea::all();
+        $filename = "ideas.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array('title', 'description', 'uuid', 'user_id','category_id','document'));
+
+        foreach($table as $row) {
+            fputcsv($handle, array($row['title'], $row['description'], $row['uuid'], $row['user_id'],
+                $row['category_id'], $row['document']));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        return Response::download($filename, 'ideas.csv', $headers);
+    }
+
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static create( array $document )
+ * @property mixed $reads
  */
 class Idea extends Model
 {
@@ -32,6 +33,7 @@ class Idea extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
 
 
 

@@ -14,7 +14,8 @@
         "laravel/ui": "^3.3",
         "rtconner/laravel-likeable": "^3.2",
         "webpatser/laravel-uuid": "3.0",
-      "ext-zip": "*"
+      "ext-zip": "*",
+        "ext-xlswriter": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

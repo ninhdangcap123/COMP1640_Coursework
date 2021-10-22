@@ -62,7 +62,9 @@
 
     </table>
     @if(auth()->user()->user_role_id == 2)
-        <a href="{{route('idea.downloadaszip')}}">Download all documents</a> <hr>
+
+        <a href="{{route('idea.downloadAsZip')}}">Download all documents</a> <hr>
+        <a href="{{route('idea.downloadAsCsv')}}">Download CSV </a> <hr>
     @endif
     <div class="card-footer d-flex justify-content">
         {{ $ideas->links() }}
