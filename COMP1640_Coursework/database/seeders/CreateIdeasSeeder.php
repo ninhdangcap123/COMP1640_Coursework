@@ -18,7 +18,7 @@ class CreateIdeasSeeder extends Seeder
           [
               'title' => 'Idea1',
               'description' => 'nen hop tac',
-              'thumb_points' => '10',
+//              'thumb_points' => '10',
               'views' => '10',
               'user_id' => '4',
               'category_id'=>'1',
@@ -31,7 +31,7 @@ class CreateIdeasSeeder extends Seeder
             [
                 'title' => 'Idea2',
                 'description' => 'nen tang luong',
-                'thumb_points' => '11',
+//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
@@ -44,7 +44,7 @@ class CreateIdeasSeeder extends Seeder
             [
                 'title' => 'Idea2',
                 'description' => 'nen tang luong',
-                'thumb_points' => '11',
+//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
@@ -57,7 +57,7 @@ class CreateIdeasSeeder extends Seeder
             [
                 'title' => 'Idea2',
                 'description' => 'nen tang luong',
-                'thumb_points' => '11',
+//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
@@ -70,7 +70,7 @@ class CreateIdeasSeeder extends Seeder
             [
                 'title' => 'Idea2',
                 'description' => 'nen tang luong',
-                'thumb_points' => '11',
+//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
@@ -82,7 +82,7 @@ class CreateIdeasSeeder extends Seeder
             ],[
                 'title' => 'Idea2',
                 'description' => 'nen tang luong',
-                'thumb_points' => '11',
+//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',

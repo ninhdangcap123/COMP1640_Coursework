@@ -48,23 +48,23 @@ class LoginController extends Controller
         ]);
 
         if(auth()->attempt(array('email' => $validate['email'], 'password' => $validate['password']))) {
-            switch (auth()->user()->user_role_id) {
-
-                case 1:
-                    return redirect()->route('home');
-
-                case 2:
-                    return redirect()->route('home');
-
-                case 3:
-                    return redirect()->route('qac.home');
-
-                case 4:
-                    return redirect()->route('staff.home');
-
-                default:
-                    return redirect()->route('home');
-            }
+//            switch (auth()->user()->user_role_id) {
+//
+//                case 1:
+//                    return redirect()->route('home');
+//
+//                case 2:
+//                    return redirect()->route('home');
+//
+//                case 3:
+//                    return redirect()->route('home');
+//
+//                case 4:
+//                    return redirect()->route('staff.home');
+//
+//                default:
+//                    return redirect()->route('home');
+//            }
             return redirect()->route('home');
 
         }

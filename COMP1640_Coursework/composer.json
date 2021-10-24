@@ -12,7 +12,10 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "webpatser/laravel-uuid": "3.0"
+        "rtconner/laravel-likeable": "^3.2",
+        "webpatser/laravel-uuid": "3.0",
+      "ext-zip": "*",
+        "ext-xlswriter": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

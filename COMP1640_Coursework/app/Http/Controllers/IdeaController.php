@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 
+use Illuminate\Support\Facades\File;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+
+use Vtiful\Kernel\Excel;
 use Webpatser\Uuid\Uuid;
+use ZipArchive;
 
 class IdeaController extends Controller
 {
@@ -78,6 +83,10 @@ class IdeaController extends Controller
     public function show($id)
     {
         $idea = Idea::find($id);
+//        $idea->update([
+//            'views' => $idea->views + 1
+//        ]);
+        $idea->increment('views');
         $comment = $idea->comment;
         return view('ideas.show', compact('idea',
             'comment'));
@@ -130,4 +139,63 @@ class IdeaController extends Controller
         $idea->delete();
         return redirect()->route('idea.index');
     }
+    public function likeIdea($id)
+    {
+        $idea = Idea::find($id);
+        $idea->like();
+        $idea->save();
+
+        return redirect()->route('idea.show', compact('id'));
+    }
+
+    public function unlikeIdea($id)
+    {
+        $idea =Idea::find($id);
+        $idea->unlike();
+        $idea->save();
+
+        return redirect()->route('idea.show',compact('id'));
+    }
+    public function downloadAllAsZip(): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+
+        $zip = new ZipArchive;
+
+        $fileName = 'AllFile.zip';
+
+        if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
+        {
+            $files = File::files(public_path('documents'));
+
+            foreach ($files as $key => $value) {
+                $relativeNameInZipFile = basename($value);
+                $zip->addFile($value, $relativeNameInZipFile);
+            }
+
+            $zip->close();
+        }
+
+        return response()->download(public_path($fileName));
+    }
+    public static function writeArrayToCsvFile() : \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+        $table = Idea::all();
+        $filename = "ideas.csv";
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array('title', 'description', 'uuid', 'user_id','category_id','document'));
+
+        foreach($table as $row) {
+            fputcsv($handle, array($row['title'], $row['description'], $row['uuid'], $row['user_id'],
+                $row['category_id'], $row['document']));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        return Response::download($filename, 'ideas.csv', $headers);
+    }
+
 }

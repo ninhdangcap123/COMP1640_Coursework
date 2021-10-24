@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Conner\Likeable\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static create( array $document )
+ * @property mixed $reads
  */
 class Idea extends Model
 {
-    use HasFactory;
+    use HasFactory, Likeable;
     protected $fillable = [
       'title',
       'description',
@@ -31,6 +33,7 @@ class Idea extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
 
 
 
