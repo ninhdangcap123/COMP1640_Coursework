@@ -45,12 +45,16 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 })->name('welcome');
 
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+
+Route::get('/header', function (){
+    return view('layouts.header');
+});
 
 Route::get('/login', function(){
    return view('auth.login');
