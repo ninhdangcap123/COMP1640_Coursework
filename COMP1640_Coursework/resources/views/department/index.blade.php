@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.header')
 @section('content')
     <a href="{{route('qac.create')}}">Create new Department</a> <hr>
     <table border="1">

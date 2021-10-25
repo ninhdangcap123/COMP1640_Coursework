@@ -56,15 +56,15 @@
             <div class="row">
                 <div class="col-lg-12 text-right">
                     <div class="logo_container">
-                        <img src="{{asset('img/logo.jpg')}}" class="logo" alt="logo">
+                        <a class="nav-link" href="{{ route('home') }}"><img src="{{asset('img/logo.jpg')}}" class="logo" alt="logo"></a>
                     </div>
                     <nav class="navbar">
                         <ul class="navbar_menu">
                             <li class="nav-item">
-                                <a class="nav-link" href="Dashboard.html">Dashboard</a>
+                                <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Home.html">Home</a>
+                                <a class="nav-link" href="{{ route('idea.index') }}">Home</a>
                             </li>
 
                             <li><a class="nav-link" href="#">Category</a>
@@ -80,7 +80,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="MyIdeas.html">MyIdeas</a>
+                                <a class="nav-link" href="{{ route('idea.myIdea') }}">MyIdeas</a>
                             </li>
                                 <!-- Authentication Links -->
                                 @guest

@@ -25,7 +25,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::orderBy('created_at', 'DESC')->paginate(5);
+        $ideas = Idea::query()->orderBy('created_at', 'DESC')->paginate(5);
         $comments = Comment::all();
         $categories = Category::all();
         $users = User::all();
@@ -33,7 +33,41 @@ class IdeaController extends Controller
             'comments','categories', 'users'));
     }
 
-    /**
+    public function getIdeas($id){
+
+        $ideas = Idea::query()->where('category_id', $id)->paginate();
+        $comments = Comment::all();
+        $categories = Category::all();
+        $users = User::all();
+        return view('ideas.index', compact('ideas',
+            'comments','categories', 'users'));
+
+    }
+
+    public function myIdea(){
+        $ideas = Idea::query()->where('user_id', auth()->user()->id)->paginate(5);
+        $comments = Comment::all();
+        $categories = Category::all();
+        $users = User::all();
+        return view('ideas.index', compact('ideas',
+            'comments','categories', 'users'));
+    }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+        $categories = Category::all();
+        $users = User::all();
+
+        // Search in the title and body columns from the posts table
+        $ideas = Idea::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->paginate(5);
+
+        // Return the search view with the resluts compacted
+        return view('ideas.index', compact('ideas',
+        'categories', 'users'));
+    }    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response

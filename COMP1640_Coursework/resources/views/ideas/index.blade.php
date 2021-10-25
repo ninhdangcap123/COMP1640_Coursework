@@ -48,7 +48,7 @@
 {{--                    @method('delete')--}}
 {{--                    <button type="submit" class="btn btn-outline-danger">Delete</button>--}}
 {{--                </form>--}}
-{{--                    @endif--}}
+{{--                @endif--}}
 {{--                        <form action="{{ route('idea.show', $idea->id) }}" >--}}
 
 {{--                            <button type="submit" class="btn btn-outline-secondary">Show</button>--}}
@@ -142,10 +142,10 @@
 
                                     <div class="simplebar-content" style="padding: 16px;">
                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                            <a href="javascript:void(0)"
+                                            <a href="{{ route('idea.index') }}"
                                                class="nav-link nav-link-faded has-icon active">All Category</a>
                                             @foreach($categories as $category)
-                                                <a href="javascript:void(0)"
+                                                <a href="{{ route('idea.getIdeas', $category->id) }}"
                                                    class="nav-link nav-link-faded has-icon active">{{ $category->name }}</a>
                                             @endforeach
                                             <a href="javascript:void(0)"
@@ -179,24 +179,26 @@
                         <option data-filter=".vba" value="4">Most popular ideas</option>
 
                     </select>
-                    <span class="input-icon input-icon-sm ml-auto w-auto">
-                            <input type="text"
-                                   class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"
-                                   placeholder="Search ideas" />
-                        </span>
+{{--                    <span class="input-icon input-icon-sm ml-auto w-auto">--}}
+
+{{--                            <input type="text"--}}
+{{--                                   class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"--}}
+{{--                                   placeholder="Search ideas" />--}}
+{{--                        </span>--}}
+                    <form action="{{ route('idea.search') }}" method="GET" >
+                        <input type="text" name="search" required placeholder="Search ideas"/>
+                        <button type="submit">Search</button>
+                    </form>
                 </div>
                 <!-- /Inner main header -->
 
                 <!-- Inner main body -->
 
                 <!-- idea List -->
-                <div class="inner-main-body p-2 p-sm-3 collapse idea-content show"
-
-                >
+                <div class="inner-main-body p-2 p-sm-3 collapse idea-content show">
                     <!-- data-isotope='{ "itemSelector": ".idea-item", "layoutMode": "fitRows"}' -->
 
-
-
+            @if($ideas->isNotEmpty())
                     @foreach($ideas as $idea)
                     <div class="product-item vba">
                         <div class="product product_filter">
@@ -204,25 +206,29 @@
                                 <div class="card-body p-2 p-sm-3">
                                     <div class="media idea-item">
 
-{{--                                        <a href="#" data-toggle="collapse" data-target=".idea-content"></a>--}}
+                                        <a href="#" data-toggle="collapse" data-target=".idea-content"></a>
                                         <div class="media-body">
-{{--                                            <h6><a href="{{ route('idea.show',$idea->id) }}"--}}
-{{--                                                   class="text-body">{{ $idea->title }}</a></h6>--}}
+
                                             <form action="{{ route('idea.show', $idea->id) }}" >
 
                                                 <button type="submit" class="btn btn-outline-secondary">{{ $idea->title }}</button>
                                             </form>
                                             <p class="text-secondary">
                                                 {{ $idea->description }}
+                                                <br>
+                                                #{{ $idea->categories->name }}
+                                                <br>
+                                                <a href="{{ route('idea.download', $idea->uuid) }}">{{ $idea->document }}
                                             </p>
+
 
                                         </div>
                                         <div class="text-muted small text-center align-self-center">
                                                 <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i>
                                                     {{ $idea->views }}</span>
-                                            <span><i class="far fa-comment ml-2"></i> 3</span>
-                                            <span><i class="far fa-thumbs-up ml-2"></i>{{ $idea->thumb_points }}</span>
-                                            <span><i class="far fa-thumbs-down ml-2"></i>{{ $idea->thumb_points }}</span>
+                                            <span><i class="far fa-comment ml-2"></i> {{ $idea->comments->count() }}</span>
+                                            <span><i class="far fa-thumbs-up ml-2"></i>{{ $idea->likeCount }}</span>
+
                                         </div>
                                     </div>
                                 </div>
@@ -232,15 +238,21 @@
                     @endforeach
 
                     <ul class="pagination pagination-primary pagination-circle justify-content-center mb-0">
-                        {{ $ideas->links() }}
+                        {!! $ideas->links() !!}
                     </ul>
                 </div>
+            @else
+                    <div>
+                        <h2>No Ideas found</h2>
+                    </div>
+            @endif
                 <!-- /idea List -->
 
                 <!-- idea Detail -->
 {{--                <div class="inner-main-body p-2 p-sm-3 collapse idea-content">--}}
 {{--                    <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse"--}}
 {{--                       data-target=".idea-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>--}}
+{{--                    @include('ideas.show', ['idea_id'=> $idea->id])--}}
 {{--                    <div class="card mb-2">--}}
 {{--                        <div class="card-body">--}}
 {{--                            <div class="media idea-item">--}}
@@ -341,14 +353,14 @@
 
                             <div class="form-group">
                                 <label for="threadPostAs">Post as</label>
-                                <select class="form-control form-control-sm w-auto mr-1">
+                                <select class="form-control form-control-sm w-auto mr-1" name="user_id">
                                     <option value="{{ auth()->user()->id }}">Yourself</option>
                                     <option value="5">Anonymous</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="threadCategory">Category</label>
-                                <select class="form-control form-control-sm w-auto mr-1">
+                                <select class="form-control form-control-sm w-auto mr-1" name="category_id">
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
