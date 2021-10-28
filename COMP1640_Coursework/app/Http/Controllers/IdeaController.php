@@ -117,9 +117,6 @@ class IdeaController extends Controller
     public function show($id)
     {
         $idea = Idea::find($id);
-//        $idea->update([
-//            'views' => $idea->views + 1
-//        ]);
         $idea->increment('views');
         $comment = $idea->comment;
         return view('ideas.show', compact('idea',
@@ -178,7 +175,6 @@ class IdeaController extends Controller
         $idea = Idea::find($id);
         $idea->like();
         $idea->save();
-
         return redirect()->route('idea.show', compact('id'));
     }
 
@@ -187,28 +183,22 @@ class IdeaController extends Controller
         $idea =Idea::find($id);
         $idea->unlike();
         $idea->save();
-
         return redirect()->route('idea.show',compact('id'));
     }
     public function downloadAllAsZip(): \Symfony\Component\HttpFoundation\BinaryFileResponse
     {
 
         $zip = new ZipArchive;
-
         $fileName = 'AllFile.zip';
-
         if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
         {
             $files = File::files(public_path('documents'));
-
             foreach ($files as $key => $value) {
                 $relativeNameInZipFile = basename($value);
                 $zip->addFile($value, $relativeNameInZipFile);
             }
-
             $zip->close();
         }
-
         return response()->download(public_path($fileName));
     }
     public static function writeArrayToCsvFile() : \Symfony\Component\HttpFoundation\BinaryFileResponse
@@ -222,13 +212,10 @@ class IdeaController extends Controller
             fputcsv($handle, array($row['title'], $row['description'], $row['uuid'], $row['user_id'],
                 $row['category_id'], $row['document']));
         }
-
         fclose($handle);
-
         $headers = array(
             'Content-Type' => 'text/csv',
         );
-
         return Response::download($filename, 'ideas.csv', $headers);
     }
 
