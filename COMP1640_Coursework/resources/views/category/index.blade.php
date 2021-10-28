@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.header')
 @section('content')
 <a href="{{route('qam.create')}}">Create new Category</a> <hr>
 <table border="1">

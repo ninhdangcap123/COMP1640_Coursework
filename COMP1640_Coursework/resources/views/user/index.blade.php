@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.header')
 @section('content')
 <a href="{{route('admin.create')}}">Create new user</a> <hr>
 <table border="1">

@@ -108,12 +108,14 @@ Route::group(['middleware'=>'auth'],function (){
         Route::post('/update/{id}', [App\Http\Controllers\IdeaController::class, 'update'])->name('idea.update');
         Route::delete('/delete/{id}', [\App\Http\Controllers\IdeaController::class, 'destroy'])->name('idea.delete');
         Route::get('/show/{id}',[\App\Http\Controllers\IdeaController::class, 'show'])->name('idea.show');
+        Route::get('/show/',[\App\Http\Controllers\IdeaController::class, 'myIdea'])->name('idea.myIdea');
         Route::get('/{uuid}/download',[\App\Http\Controllers\IdeaController::class,'fileDownload'])->name('idea.download');
         Route::post('/like-idea/{id}',[\App\Http\Controllers\IdeaController::class,'likeIdea'])->name('idea.like');
         Route::get('download-zip', [\App\Http\Controllers\IdeaController::class,'downloadAllAsZip'])->name('idea.downloadAsZip');
         Route::get('/download-csv', [\App\Http\Controllers\IdeaController::class, 'writeArrayToCsvFile'])->name('idea.downloadAsCsv');
-
+        Route::get('/search', [\App\Http\Controllers\IdeaController::class,'search'])->name('idea.search');
         Route::post('/unlike-idea/{id}',[\App\Http\Controllers\IdeaController::class,'unlikeIdea'])->name('idea.unlike');
+        Route::get('/getAll/{id}', [\App\Http\Controllers\IdeaController::class, 'getIdeas'])->name('idea.getIdeas');
     });
 
     Route::group(['prefix' => 'comments'],function (){

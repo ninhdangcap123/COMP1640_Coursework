@@ -25,7 +25,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::orderBy('created_at', 'DESC')->paginate(5);
+        $ideas = Idea::query()->orderBy('created_at', 'DESC')->paginate(5);
         $comments = Comment::all();
         $categories = Category::all();
         $users = User::all();
@@ -33,7 +33,41 @@ class IdeaController extends Controller
             'comments','categories', 'users'));
     }
 
-    /**
+    public function getIdeas($id){
+
+        $ideas = Idea::query()->where('category_id', $id)->paginate();
+        $comments = Comment::all();
+        $categories = Category::all();
+        $users = User::all();
+        return view('ideas.index', compact('ideas',
+            'comments','categories', 'users'));
+
+    }
+
+    public function myIdea(){
+        $ideas = Idea::query()->where('user_id', auth()->user()->id)->paginate(5);
+        $comments = Comment::all();
+        $categories = Category::all();
+        $users = User::all();
+        return view('ideas.index', compact('ideas',
+            'comments','categories', 'users'));
+    }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+        $categories = Category::all();
+        $users = User::all();
+
+        // Search in the title and body columns from the posts table
+        $ideas = Idea::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->paginate(5);
+
+        // Return the search view with the resluts compacted
+        return view('ideas.index', compact('ideas',
+        'categories', 'users'));
+    }    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
@@ -83,9 +117,6 @@ class IdeaController extends Controller
     public function show($id)
     {
         $idea = Idea::find($id);
-//        $idea->update([
-//            'views' => $idea->views + 1
-//        ]);
         $idea->increment('views');
         $comment = $idea->comment;
         return view('ideas.show', compact('idea',
@@ -144,7 +175,6 @@ class IdeaController extends Controller
         $idea = Idea::find($id);
         $idea->like();
         $idea->save();
-
         return redirect()->route('idea.show', compact('id'));
     }
 
@@ -153,28 +183,22 @@ class IdeaController extends Controller
         $idea =Idea::find($id);
         $idea->unlike();
         $idea->save();
-
         return redirect()->route('idea.show',compact('id'));
     }
     public function downloadAllAsZip(): \Symfony\Component\HttpFoundation\BinaryFileResponse
     {
 
         $zip = new ZipArchive;
-
         $fileName = 'AllFile.zip';
-
         if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
         {
             $files = File::files(public_path('documents'));
-
             foreach ($files as $key => $value) {
                 $relativeNameInZipFile = basename($value);
                 $zip->addFile($value, $relativeNameInZipFile);
             }
-
             $zip->close();
         }
-
         return response()->download(public_path($fileName));
     }
     public static function writeArrayToCsvFile() : \Symfony\Component\HttpFoundation\BinaryFileResponse
@@ -188,13 +212,10 @@ class IdeaController extends Controller
             fputcsv($handle, array($row['title'], $row['description'], $row['uuid'], $row['user_id'],
                 $row['category_id'], $row['document']));
         }
-
         fclose($handle);
-
         $headers = array(
             'Content-Type' => 'text/csv',
         );
-
         return Response::download($filename, 'ideas.csv', $headers);
     }
 

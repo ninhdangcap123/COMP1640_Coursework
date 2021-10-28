@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>    
+  <style>
     /* Set black background color, white text and some padding */
     footer {
       background-color: grey;
@@ -24,7 +24,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="home">iIDEA</a>
     </div>
@@ -41,7 +41,7 @@
             <button class="btn btn-default" type="button">
               <span class="glyphicon glyphicon-search"></span>
             </button>
-          </span>        
+          </span>
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
@@ -66,12 +66,12 @@
         <div class="col-sm-3">
           <div class="well">
             <h4>Most Viewed Idea</h4>
-            <p> <span class="glyphicon glyphicon-eye-open"></span> 600 </p> 
+            <p> <span class="glyphicon glyphicon-eye-open"></span> 600 </p>
           </div>
         </div>
         </div>
       </div>
-</div>
-
 </body>
+
+
 </html>
