@@ -92,19 +92,24 @@ class IdeaController extends Controller
      */
     public function store(Request $request)
     {
-        $idea = $request->all();
+        $idea = $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+            'user_id' => 'required',
+            'category_id' => 'required',
+        ]) ;
         $idea['uuid'] = (string)Uuid::generate();
         if ($request->hasFile('document')) {
             $idea['document'] = $request->document->getClientOriginalName();
-            $request->document->storeAs('ideas', $idea['document']);
+            $request->document->storeAs('public/document', $idea['document']);
         }
         Idea::create($idea);
 
-        return redirect()->route('idea.index');
+        return redirect()->back();
     }
     public function fileDownload($uuid){
         $idea = Idea::where('uuid', $uuid)->firstOrFail();
-        $pathToFile = storage_path('app/ideas/' . $idea->document);
+        $pathToFile = storage_path('app/public/document/' . $idea->document);
         return response()->download($pathToFile);
     }
 
@@ -117,10 +122,11 @@ class IdeaController extends Controller
     public function show($id)
     {
         $idea = Idea::find($id);
+        $categories = Category::all();
         $idea->increment('views');
         $comment = $idea->comment;
         return view('ideas.show', compact('idea',
-            'comment'));
+            'comment', 'categories'));
     }
 
     /**
@@ -140,13 +146,21 @@ class IdeaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Idea  $idea
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Idea $idea
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, $id)
     {
         $idea = Idea::find($id);
+
+        $this->validate($request,[
+           'name'=>'required|max:255',
+           'description'=>'required|max:255',
+           'user_id'=>'required',
+           'category_id'=>'required',
+        ]);
 
         $idea->update([
             'title' => $request->title,
@@ -218,5 +232,34 @@ class IdeaController extends Controller
         );
         return Response::download($filename, 'ideas.csv', $headers);
     }
+    public function getLastestIdea(){
+        $ideas = Idea::query()->orderBy('created_at', 'DESC')->paginate(5);
+        $comments = Comment::all();
+        $categories = Category::all();
+        $users = User::all();
+
+        return view('ideas.index', compact('ideas',
+        'comments','categories','users'));
+    }
+    public function getMostViewedIdea(){
+        $ideas = Idea::query()->orderBy('views', 'DESC')->paginate(5);
+        $comments = Comment::all();
+        $categories = Category::all();
+        $users = User::all();
+        return view('ideas.index', compact('ideas',
+            'comments','categories','users'));
+
+    }
+    public function getMostCommentIdea(){
+        $ideas = Idea::query()->withCount('comments')->paginate(5);
+        $comments = Comment::all();
+        $categories = Category::all();
+        $users = User::all();
+
+        return view('ideas.index', compact('ideas',
+            'comments','categories','users'));
+    }
+
+
 
 }
