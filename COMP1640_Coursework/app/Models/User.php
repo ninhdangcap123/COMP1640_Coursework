@@ -49,6 +49,9 @@ class User extends Authenticatable
     public function departments(){
         return $this->belongsTo(Department::class,'department_id');
     }
+    public function ideas(){
+        return $this->hasMany(Idea::class);
+    }
 //    public function commentable(){
 //        return $this->morphMany(Comment::class, 'commentable');
 //    }

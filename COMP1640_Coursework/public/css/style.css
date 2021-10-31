@@ -181,7 +181,6 @@ h6 {
 } */
 
 .navbar li {
-  color: #fff;
   display: block;
   float: left;
   padding: 1rem;
@@ -229,10 +228,7 @@ ul li ul:hover {
   display: block;
   
 }
-.dropdown li a:hover{
-  background-color: white;
-  color: #f5973e ;
-}
+
 .category1{
   text-align: center;
   font-size: 16px !important;
@@ -266,7 +262,40 @@ ul li ul:hover {
   color: #ffffff;
 }
 
+/* Dropdown Button */
+.dropbtn {
+  cursor: pointer;
+}
 
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}  
 
 /* Hamburger */
 .hamburger_container{
@@ -357,4 +386,26 @@ color: #b5aec4;
 .logo_container {
   position: absolute;
   height: 100%;
+}
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+}
+.card-registration .select-arrow {
+  top: 13px;
+}
+
+.gradient-custom-2 {
+
+  /* fallback for old browsers */
+  /* background: #a1c4fd; */
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1)); */
 }

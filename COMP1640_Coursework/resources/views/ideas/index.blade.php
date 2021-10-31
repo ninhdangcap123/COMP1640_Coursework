@@ -152,6 +152,11 @@
                                                class="nav-link nav-link-faded has-icon">Others</a>
                                         </nav>
                                     </div>
+                                    @if(auth()->user()->user_role_id == 2)
+
+                                        <a href="{{route('idea.downloadAsZip')}}">Download all documents</a> <hr>
+                                        <a href="{{route('idea.downloadAsCsv')}}">Download CSV </a> <hr>
+                                    @endif
                                     <!-- </div> -->
                                 </div>
                             </div>
@@ -171,14 +176,17 @@
             <div class="inner-main">
                 <!-- Inner main header -->
                 <div class="inner-main-header">
-                    <select class="custom-select custom-select-sm w-auto mr-1">
-                        <option data-filter="*" value="">Latest ideas</option>
-                        <option data-filter=".nba" value="1">Latest ideas</option>
-                        <option data-filter=".shoes" selected="2">Latest comments</option>
-                        <option data-filter=".clothing" value="3">Most viewed ideas</option>
-                        <option data-filter=".vba" value="4">Most popular ideas</option>
 
-                    </select>
+
+
+                        <a href="{{ route('idea.latest') }}">Latest ideas</a>
+                        <a href="{{ route('idea.mostComment') }}">Most comments</a>
+                        <a href="{{ route('idea.mostViewed') }}">Most viewed ideas</a>
+
+
+
+
+
 {{--                    <span class="input-icon input-icon-sm ml-auto w-auto">--}}
 
 {{--                            <input type="text"--}}
@@ -213,6 +221,7 @@
 
                                                 <button type="submit" class="btn btn-outline-secondary">{{ $idea->title }}</button>
                                             </form>
+                                            at {{ $idea->created_at }}
                                             <p class="text-secondary">
                                                 {{ $idea->description }}
                                                 <br>
@@ -224,8 +233,7 @@
 
                                         </div>
                                         <div class="text-muted small text-center align-self-center">
-                                                <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i>
-                                                    {{ $idea->views }}</span>
+                                            <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> {{ $idea->views }}</span>
                                             <span><i class="far fa-comment ml-2"></i> {{ $idea->comments->count() }}</span>
                                             <span><i class="far fa-thumbs-up ml-2"></i>{{ $idea->likeCount }}</span>
 
@@ -248,75 +256,7 @@
             @endif
                 <!-- /idea List -->
 
-                <!-- idea Detail -->
-{{--                <div class="inner-main-body p-2 p-sm-3 collapse idea-content">--}}
-{{--                    <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-toggle="collapse"--}}
-{{--                       data-target=".idea-content"><i class="fa fa-arrow-left mr-2"></i>Back</a>--}}
-{{--                    @include('ideas.show', ['idea_id'=> $idea->id])--}}
-{{--                    <div class="card mb-2">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <div class="media idea-item">--}}
 
-{{--                                <div class="media-body ml-3">--}}
-{{--                                    <a href="javascript:void(0)" class="text-secondary">Tran Nhat Minh</a>--}}
-{{--                                    <small class="text-muted ml-2">1 hour ago</small>--}}
-{{--                                    <h5 class="mt-1">Realtime fetching data</h5>--}}
-{{--                                    <div class="mt-3 font-size-sm">--}}
-{{--                                        <p>Hellooo :)</p>--}}
-{{--                                        <p>--}}
-{{--                                            I'm newbie with laravel and i want to fetch data from database in--}}
-{{--                                            realtime for my dashboard anaytics and i found a solution with ajax but--}}
-{{--                                            it dosen't work if any one have a simple solution it will be--}}
-{{--                                            helpful--}}
-{{--                                        </p>--}}
-{{--                                        <p>Thank</p>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="text-muted small text-center">--}}
-{{--                                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>--}}
-{{--                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
-{{--                                    <span><i class="far fa-thumbs-up ml-2"></i> 3</span>--}}
-{{--                                    <span><i class="far fa-thumbs-down ml-2"></i> 3</span>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="card mb-2">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <div class="media idea-item">--}}
-
-{{--                                <div class="media-body ml-3">--}}
-{{--                                    <a href="javascript:void(0)" class="text-secondary">Bui Khanh Toan</a>--}}
-{{--                                    <small class="text-muted ml-2">1 hour ago</small>--}}
-{{--                                    <div class="mt-3 font-size-sm">--}}
-{{--                                        <p>Co moi cai trang home lam mai khong xong.</p>--}}
-{{--                                    </div>--}}
-{{--                                    <button class="btn btn-xs text-muted has-icon"><i class="far fa-thumbs-up"--}}
-{{--                                                                                      aria-hidden="true"></i>1000</button>--}}
-{{--                                    <a href="javascript:void(0)" class="text-muted small">Reply</a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="card mb-2">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <div class="media idea-item">--}}
-
-{{--                                <div class="media-body ml-3">--}}
-{{--                                    <a href="javascript:void(0)" class="text-secondary">Tran Nhat Minh</a>--}}
-{{--                                    <small class="text-muted ml-2">30 minutes ago</small>--}}
-{{--                                    <div class="mt-3 font-size-sm">--}}
-{{--                                        <p>@reply Bui Khanh Toan: Co gioi thi vao ma lam.</p>--}}
-{{--                                    </div>--}}
-{{--                                    <button class="btn btn-xs text-muted has-icon"><i class="far fa-thumbs-up"--}}
-{{--                                                                                      aria-hidden="true"></i>2000</button>--}}
-{{--                                    <a href="javascript:void(0)" class="text-muted small">Reply</a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-                <!-- /idea Detail -->
 
                 <!-- /Inner main body -->
             </div>
@@ -342,7 +282,7 @@
                             <div class="form-group">
                                 <label for="threadTitle" >Title</label>
                                 <input type="text" class="form-control" id="threadTitle" placeholder="Enter title"
-                                       autofocus="" name="title"/>
+                                       autofocus="" name="title" required/>
                             </div>
                             <div class="form-group">
                                 <label for="threadDescription">Description</label>
@@ -369,6 +309,14 @@
                             <div class="form-group">
                                 <label for="threadDocument">Document</label>
                                 <br><input type="file" name="document">
+                            </div>
+                            <div class="mb-4 pb-2">
+                                <div class="form-outline">
+
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required>
+                                    <label for="vehicle1">By signing up you accept our <a href="#">Terms Of Use</a>
+                                    </label>
+                                </div>
                             </div>
 
                         </div>

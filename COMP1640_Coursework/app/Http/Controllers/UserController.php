@@ -49,8 +49,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'user_role_id' => 'required',
+            'department_id' => 'required',
+        ]);
 
-        User::create([
+       User::create([
             'name' => $request->name,
             'email'=> $request->email,
             'password' => Hash::make($request->password),
@@ -88,11 +94,17 @@ class UserController extends Controller
 
         $user = User::find($id);
 
+        $this->validate($request,[
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'user_role_id' => 'required',
+        ]);
+
         $user->update([
            'name' => $request->name,
            'email'=> $request->email,
            'password'=> Hash::make($request->password),
-            'user_role_id' => $request->user_role_id,
+           'user_role_id' => $request->user_role_id,
         ]);
 
         return redirect()->route('admin.home');

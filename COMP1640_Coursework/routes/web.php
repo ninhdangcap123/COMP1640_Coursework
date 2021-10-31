@@ -46,15 +46,15 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('auth.login');
-})->name('welcome');
+})->name('welcome')->middleware('auth');
 
 Route::get('/home', function () {
     return view('home');
-})->name('home');
+})->name('home')->middleware('auth');
 
-Route::get('/header', function (){
-    return view('layouts.header');
-});
+//Route::get('/header', function (){
+//    return view('layouts.header');
+//});
 
 Route::get('/login', function(){
    return view('auth.login');
@@ -115,7 +115,10 @@ Route::group(['middleware'=>'auth'],function (){
         Route::get('/download-csv', [\App\Http\Controllers\IdeaController::class, 'writeArrayToCsvFile'])->name('idea.downloadAsCsv');
         Route::get('/search', [\App\Http\Controllers\IdeaController::class,'search'])->name('idea.search');
         Route::post('/unlike-idea/{id}',[\App\Http\Controllers\IdeaController::class,'unlikeIdea'])->name('idea.unlike');
-        Route::get('/getAll/{id}', [\App\Http\Controllers\IdeaController::class, 'getIdeas'])->name('idea.getIdeas');
+        Route::get('/get-all/{id}', [\App\Http\Controllers\IdeaController::class, 'getIdeas'])->name('idea.getIdeas');
+        Route::get('/get-most-viewed',[\App\Http\Controllers\IdeaController::class,'getMostViewedIdea'])->name('idea.mostViewed');
+        Route::get('/get-latest',[\App\Http\Controllers\IdeaController::class,'getLastestIdea'])->name('idea.latest');
+        Route::get('/get-most-comment',[\App\Http\Controllers\IdeaController::class,'getMostCommentIdea'])->name('idea.mostComment');
     });
 
     Route::group(['prefix' => 'comments'],function (){

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static create( array $document )
+ * @method static latest()
  * @property mixed $reads
  */
 class Idea extends Model
@@ -22,6 +23,9 @@ class Idea extends Model
         'document',
 
     ];
+
+
+
     public function categories(){
         return $this->belongsTo(Category::class, 'category_id');
     }
