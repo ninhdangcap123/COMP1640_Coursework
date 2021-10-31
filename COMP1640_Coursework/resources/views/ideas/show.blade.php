@@ -170,26 +170,7 @@
             <!-- Inner main -->
             <div class="inner-main">
                 <!-- Inner main header -->
-                <div class="inner-main-header">
-                    <select class="custom-select custom-select-sm w-auto mr-1">
-                        <option data-filter="*" value="">Latest ideas</option>
-                        <option data-filter=".nba" value="1">Latest ideas</option>
-                        <option data-filter=".shoes" selected="2">Latest comments</option>
-                        <option data-filter=".clothing" value="3">Most viewed ideas</option>
-                        <option data-filter=".vba" value="4">Most popular ideas</option>
 
-                    </select>
-                    {{--                    <span class="input-icon input-icon-sm ml-auto w-auto">--}}
-
-                    {{--                            <input type="text"--}}
-                    {{--                                   class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"--}}
-                    {{--                                   placeholder="Search ideas" />--}}
-                    {{--                        </span>--}}
-                    <form action="{{ route('idea.search') }}" method="GET" >
-                        <input type="text" name="search" required placeholder="Search ideas"/>
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
                 <!-- /Inner main header -->
 
                 <!-- Inner main body -->
@@ -238,7 +219,7 @@
                                       method="post">
                                     @csrf
                                     <button class="btn text-muted has-icon" aria-hidden="true">
-                                        unlike
+                                        dislike
                                     </button>
                                 </form>
                             </div>
@@ -246,11 +227,7 @@
 {{--                            <button class="btn text-muted has-icon"><i class="far fa-thumbs-down"--}}
 {{--                                                                       aria-hidden="true"></i></button>--}}
 
-                            <h4>Display Comments</h4>
-                            @include('comment.replies', ['comments' => $idea->comments, 'idea_id' => $idea->id])
-                            <hr />
-
-                            <h4>Add comment</h4>
+                            <p>Display Comments</p>
                             <form method="post" action="{{route('comment.store')}}">
                                 @csrf
                                 <div class="form-group">
@@ -261,6 +238,8 @@
                                     <input type="submit" class="btn btn-warning" value="Add Comment" />
                                 </div>
                             </form>
+                            @include('comment.replies', ['comments' => $idea->comments, 'idea_id' => $idea->id])
+                            <hr />
                         </div>
                     </div>
 

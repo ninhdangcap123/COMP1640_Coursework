@@ -46,15 +46,15 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('auth.login');
-})->name('welcome');
+})->name('welcome')->middleware('auth');
 
 Route::get('/home', function () {
     return view('home');
-})->name('home');
+})->name('home')->middleware('auth');
 
-Route::get('/header', function (){
-    return view('layouts.header');
-});
+//Route::get('/header', function (){
+//    return view('layouts.header');
+//});
 
 Route::get('/login', function(){
    return view('auth.login');
