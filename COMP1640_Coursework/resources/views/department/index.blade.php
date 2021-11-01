@@ -31,7 +31,7 @@
                 <h3>Department</h3>
             </div>
             <div class="pull-right" style="margin-top: 20px;">
-                <a class="btn btn-success" href="{{ route('qac.create') }}">Add Department
+                <a class="btn btn-success" href="{{ route('admin.department.create') }}">Add Department
                 </a>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 <td>{{ $department->id }}</td>
                 <td>{{ $department->name }}</td>
                 <td>
-                    <form action="{{ route('qac.delete', $department->id) }}" method="POST">
+                    <form action="{{ route('admin.department.delete', $department->id) }}" method="POST">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-outline-danger">Delete</button>

@@ -45,7 +45,7 @@ class DepartmentController extends Controller
         $departments = Department::create([
             'name' => $request->name,
         ]);
-        return redirect()->route('qac.home');
+        return redirect()->route('admin.department.home');
     }
 
     /**
