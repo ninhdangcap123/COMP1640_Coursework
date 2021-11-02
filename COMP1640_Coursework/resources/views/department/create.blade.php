@@ -32,7 +32,7 @@
                             <h2>Create Department</h2>
                         </div>
                     </div>
-                    <form action="{{route('qac.store')}}" method="post">
+                    <form action="{{route('admin.department.store')}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="Name">Department Name</label>

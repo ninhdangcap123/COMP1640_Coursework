@@ -44,6 +44,8 @@ class CategoryController extends Controller
     {
         $categories = Category::create([
             'name' => $request->name,
+            'start_date'=>$request->start_date,
+            'end_date'=>$request->end_date,
         ]);
         return redirect()->route('qam.home');
     }
@@ -63,23 +65,40 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('category.edit',compact('category'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $category= Category::find($id);
+
+        $this->validate($request,[
+            'name' => 'required|max:255',
+
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'start_date'=>$request->start_date,
+            'end_date'=>$request->end_date,
+
+        ]);
+
+        return redirect()->route('qam.home');
+
     }
 
     /**

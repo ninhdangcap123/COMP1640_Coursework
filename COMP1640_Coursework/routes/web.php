@@ -71,26 +71,26 @@ Route::group(['prefix' => 'admin/users'], function()
             Route::get('/update/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('admin.edit');
             Route::post('/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('admin.update');
             Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.delete');
-
-    });
+        Route::group(['prefix'=> '/departments'], function (){
+                Route::get('/home', [\App\Http\Controllers\DepartmentController::class, 'index'])->name('admin.department.home');
+                Route::get('/', [App\Http\Controllers\DepartmentController::class, 'index']);
+                Route::post('/create', [App\Http\Controllers\DepartmentController::class, 'store'])->name('admin.department.store');
+                Route::get('/create', [App\Http\Controllers\DepartmentController::class, 'create'])->name('admin.department.create');
+                Route::delete('/delete/{id}', [\App\Http\Controllers\DepartmentController::class, 'destroy'])->name('admin.department.delete');
+            });
+        });
 });
 
-Route::group(['prefix'=> 'qac/departments'], function (){
-    Route::group(['middleware'=>'isQAC'], function (){
-        Route::get('/home', [\App\Http\Controllers\DepartmentController::class, 'index'])->name('qac.home');
-        Route::get('/', [App\Http\Controllers\DepartmentController::class, 'index']);
-        Route::post('/create', [App\Http\Controllers\DepartmentController::class, 'store'])->name('qac.store');
-        Route::get('/create', [App\Http\Controllers\DepartmentController::class, 'create'])->name('qac.create');
-        Route::delete('/delete/{id}', [\App\Http\Controllers\DepartmentController::class, 'destroy'])->name('qac.delete');
-    });
-});
 
 Route::get('staff/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('staff.home')
     ->middleware('isStaff');
 
 Route::group(['prefix'=> 'qam/categories'], function (){
+    Route::get('/home', [\App\Http\Controllers\CategoryController::class, 'index'])->name('qam.home');
+    Route::get('/update/{id}',[\App\Http\Controllers\CategoryController::class,'edit'])->name('qam.edit');
+    Route::post('/update/{id}',[\App\Http\Controllers\CategoryController::class,'update'])->name('qam.update');
    Route::group(['middleware'=>'isQAM'], function (){
-       Route::get('/home', [\App\Http\Controllers\CategoryController::class, 'index'])->name('qam.home');
+
        Route::get('/', [App\Http\Controllers\CategoryController::class, 'index']);
        Route::post('/create', [App\Http\Controllers\CategoryController::class, 'store'])->name('qam.store');
        Route::get('/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('qam.create');
