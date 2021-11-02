@@ -226,8 +226,14 @@
                                                 {{ $idea->description }}
                                                 <br>
                                                 #{{ $idea->categories->name }}
+                                                @if($idea->created_at->lte($idea->categories->end_date))
+                                                    <b>Active</b>
+                                                @else
+                                                    <b>Closed</b>
+                                                @endif
                                                 <br>
-                                                <a href="{{ route('idea.download', $idea->uuid) }}">{{ $idea->document }}
+                                            <a href="{{ route('idea.download', $idea->uuid) }}">{{ $idea->document }}</a>
+
                                             </p>
 
 
