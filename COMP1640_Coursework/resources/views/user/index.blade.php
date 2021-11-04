@@ -1,7 +1,20 @@
 @extends('layouts.header')
 @section('content')
-<a href="{{route('admin.create')}}">Create new user</a> <hr>
-<table border="1">
+    <div class="container">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-lg-12 margin-tb">
+                <div class="pull-left">
+                    <h3>Users</h3>
+                </div>
+                <div class="pull-right" style="margin-top: 20px;">
+                    <a class="btn btn-success" href="{{route('admin.create')}}">Create new user
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+<table border="1" class="table table-bordered">
     <tr>
         <td>ID</td>
         <td>Name</td>
