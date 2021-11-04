@@ -87,7 +87,10 @@ class UserController extends Controller
     public function edit($id){
 
         $user = User::find($id);
-        return view('user.edit', compact('user',$user));
+        $userRoles = UserRole::all();
+        $departments = Department::all();
+        return view('user.edit', compact('user',
+            'userRoles','departments'));
     }
 
     public function update(Request $request, $id){
@@ -98,6 +101,7 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email',
             'user_role_id' => 'required',
+            'department_id'=>'required',
         ]);
 
         $user->update([
@@ -105,6 +109,7 @@ class UserController extends Controller
            'email'=> $request->email,
            'password'=> Hash::make($request->password),
            'user_role_id' => $request->user_role_id,
+           'department_id'=>$request->department_id,
         ]);
 
         return redirect()->route('admin.home');
