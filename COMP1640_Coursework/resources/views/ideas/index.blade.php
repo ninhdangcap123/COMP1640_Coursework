@@ -308,7 +308,9 @@
                                 <label for="threadCategory">Category</label>
                                 <select class="form-control form-control-sm w-auto mr-1" name="category_id">
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @if(now()->lte(date('Y-m-d H:i:s', strtotime($category->end_date))))
+                                        <option value="{{$category->id}}">{{ $category->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

@@ -87,6 +87,8 @@ class CategoryController extends Controller
 
         $this->validate($request,[
             'name' => 'required|max:255',
+            'start_date'=>'required|before:end_date',
+            'end_date'=>'required',
 
         ]);
 

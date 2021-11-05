@@ -29,6 +29,7 @@
                     <small class="text-muted ml-2">{{ $comment->created_at }}</small>
                     <div class="mt-3 font-size-sm">
                         <p>{{ $comment->content }}</p>
+                        @if(now()->lte(date('Y-m-d H:i:s', strtotime($idea->categories->end_date))))
                         <form method="post" action="{{ route('comment.reply.store') }}">
                             @csrf
                             <div class="form-group">
@@ -40,6 +41,7 @@
                                 <input type="submit" class="btn btn-warning" class="text-muted small" value="Reply" />
                             </div>
                         </form>
+                        @endif
                         @include('comment.replies', ['comments' => $comment->replies])
                 </div>
             </div>

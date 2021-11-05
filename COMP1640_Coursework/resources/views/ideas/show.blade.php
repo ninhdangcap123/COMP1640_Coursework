@@ -228,6 +228,7 @@
 {{--                                                                       aria-hidden="true"></i></button>--}}
 
                             <p>Display Comments</p>
+                            @if(now()->lte(date('Y-m-d H:i:s', strtotime($idea->categories->end_date))))
                             <form method="post" action="{{route('comment.store')}}">
                                 @csrf
                                 <div class="form-group">
@@ -238,8 +239,10 @@
                                     <input type="submit" class="btn btn-warning" value="Add Comment" />
                                 </div>
                             </form>
+                            @endif
                             @include('comment.replies', ['comments' => $idea->comments, 'idea_id' => $idea->id])
                             <hr />
+
                         </div>
                     </div>
 

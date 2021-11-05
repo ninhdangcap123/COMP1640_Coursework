@@ -51,7 +51,7 @@
             <tr>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
-                <td>from {{ $category->start_date }} to {{ $category->end_date }}</td>
+                <td>from {{ date('Y-m-d H:i:s', strtotime($category->start_date)) }} to {{ date('Y-m-d H:i:s', strtotime($category->end_date)) }}</td>
                 <td>
                     @if(auth()->user()->user_role_id == 1 )
                     <form action="{{ route('qam.edit', $category->id) }}" >
