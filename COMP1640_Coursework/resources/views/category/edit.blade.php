@@ -39,12 +39,20 @@
                             <input type="text" name="name" value="{{$category->name}}">
                         </label><br>
                         <label for="start_date">
-                            Start_date:
-                            <input type="datetime-local" name="start_date" value="{{$category->start_date}}">
+                            Idea_Start_date:
+                            <input type="datetime-local" name="idea_start_date" value="{{$category->idea_start_date}}">
                         </label><br>
                         <label for="end_date">
-                            End_date:
-                            <input type="datetime-local" name="end_date" value="{{$category->end_date}}">
+                            Idea_End_date:
+                            <input type="datetime-local" name="idea_end_date" value="{{$category->idea_end_date}}">
+                        </label><br>
+                        <label for="start_date">
+                            Comment_Start_date:
+                            <input type="datetime-local" name="comment_start_date" value="{{$category->comment_start_date}}">
+                        </label><br>
+                        <label for="end_date">
+                            Comment_End_date:
+                            <input type="datetime-local" name="comment_end_date" value="{{$category->comment_end_date}}">
                         </label><br>
                         <div class="col-md-12 text-center ">
                             <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Update</button>

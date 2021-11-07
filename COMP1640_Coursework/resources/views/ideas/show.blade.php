@@ -138,7 +138,7 @@
                                     <div class="simplebar-content" style="padding: 16px;">
                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
                                             <a href="{{ route('idea.index') }}"
-                                               class="nav-link nav-link-faded has-icon active">All Category</a>
+                                               class="nav-link nav-link-faded has-icon active">All Faculties</a>
                                             @foreach($categories as $category)
                                                 <a href="{{ route('idea.getIdeas', $category->id) }}"
                                                    class="nav-link nav-link-faded has-icon active">{{ $category->name }}</a>
@@ -188,8 +188,14 @@
                                     <div class="Description-idea mt-3 font-size-sm">
                                        <p>
                                            {{ $idea->description }}
+
                                        </p>
                                     </div>
+                                    @if(is_null($idea->document))
+                                        No Related Documents
+                                    @else
+                                        Related Documents:<a href="{{ route('idea.download', $idea->uuid) }}">{{ $idea->document }}</a>
+                                    @endif
 
 
                                 </div>
@@ -228,7 +234,7 @@
 {{--                                                                       aria-hidden="true"></i></button>--}}
 
                             <p>Display Comments</p>
-                            @if(now()->lte(date('Y-m-d H:i:s', strtotime($idea->categories->end_date))))
+                            @if(now()->lte(date('Y-m-d H:i:s', strtotime($idea->categories->comment_end_date))))
                             <form method="post" action="{{route('comment.store')}}">
                                 @csrf
                                 <div class="form-group">
@@ -288,10 +294,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="threadCategory">Category</label>
+                                <label for="threadCategory">Faculties</label>
                                 <select class="form-control form-control-sm w-auto mr-1" name="category_id">
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @if(now()->lte(date('Y-m-d H:i:s', strtotime($category->idea_end_date))))
+                                            <option value="{{$category->id}}">{{ $category->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

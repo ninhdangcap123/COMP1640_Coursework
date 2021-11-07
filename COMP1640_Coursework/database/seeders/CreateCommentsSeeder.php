@@ -22,7 +22,8 @@ class CreateCommentsSeeder extends Seeder
                     'user_id' => rand(1, 6),
                     'content' => 'test',
                     'commentable_id' => rand(1, 6),
-                    'commentable_type' => rand(0, 1) == 1 ? 'App\Models\Idea' : 'App\Models\User'
+                    'commentable_type' => rand(0, 1) == 1 ? 'App\Models\Idea' : 'App\Models\User',
+                    'created_at' => now(),
                 ]
             );
     }}

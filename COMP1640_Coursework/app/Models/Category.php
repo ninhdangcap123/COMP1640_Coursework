@@ -10,9 +10,15 @@ class Category extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'start_date',
-        'end_date',
+        'idea_start_date',
+        'idea_end_date',
+        'comment_start_date',
+        'comment_end_date'
     ];
+    public function ideas()
+    {
+        return $this->hasMany(Idea::class);
+    }
 
 
 

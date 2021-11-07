@@ -16,9 +16,10 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('start_date')->nullable()->default(now());
-            $table->string('end_date')->nullable()->default(now()->addDay());
-//            $table->unsignedInteger('idea_id');
+            $table->string('idea_start_date')->nullable()->default(now());
+            $table->string('idea_end_date')->nullable()->default(now()->addDay());
+            $table->string('comment_start_date')->nullable()->default(now());
+            $table->string('comment_end_date')->nullable()->default(now()->addDay());
             $table->timestamps();
         });
     }

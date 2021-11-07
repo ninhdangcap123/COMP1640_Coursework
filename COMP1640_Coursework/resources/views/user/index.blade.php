@@ -29,7 +29,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->userRoles->name }}</td>
-                <td>{{$user->departments->name}}</td>
+                <td>{{ $user->departments->name }}</td>
 
                 <td>
                     <form action="{{ route('admin.update', $user->id) }}" >

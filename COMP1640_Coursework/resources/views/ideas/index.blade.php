@@ -143,13 +143,12 @@
                                     <div class="simplebar-content" style="padding: 16px;">
                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
                                             <a href="{{ route('idea.index') }}"
-                                               class="nav-link nav-link-faded has-icon active">All Category</a>
+                                               class="nav-link nav-link-faded has-icon active">All Faculties</a>
                                             @foreach($categories as $category)
                                                 <a href="{{ route('idea.getIdeas', $category->id) }}"
                                                    class="nav-link nav-link-faded has-icon active">{{ $category->name }}</a>
                                             @endforeach
-                                            <a href="javascript:void(0)"
-                                               class="nav-link nav-link-faded has-icon">Others</a>
+
                                         </nav>
                                     </div>
                                     @if(auth()->user()->user_role_id == 2)
@@ -226,7 +225,7 @@
                                                 {{ $idea->description }}
                                                 <br>
                                                 #{{ $idea->categories->name }}
-                                                @if($idea->created_at->lte($idea->categories->end_date))
+                                                @if($idea->created_at->lte($idea->categories->idea_end_date))
                                                     <b>Active</b>
                                                 @else
                                                     <b>Closed</b>
@@ -305,10 +304,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="threadCategory">Category</label>
+                                <label for="threadCategory">Faculties</label>
                                 <select class="form-control form-control-sm w-auto mr-1" name="category_id">
                                     @foreach($categories as $category)
-                                        @if(now()->lte(date('Y-m-d H:i:s', strtotime($category->end_date))))
+                                        @if(now()->lte(date('Y-m-d H:i:s', strtotime($category->idea_end_date))))
                                         <option value="{{$category->id}}">{{ $category->name }}</option>
                                         @endif
                                     @endforeach
@@ -322,7 +321,7 @@
                                 <div class="form-outline">
 
                                     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required>
-                                    <label for="vehicle1">By signing up you accept our <a href="#">Terms Of Use</a>
+                                    <label for="vehicle1">By signing up you accept our <a href="#" >Terms Of Use</a>
                                     </label>
                                 </div>
                             </div>

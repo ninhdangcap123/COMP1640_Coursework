@@ -44,8 +44,10 @@ class CategoryController extends Controller
     {
         $categories = Category::create([
             'name' => $request->name,
-            'start_date'=>$request->start_date,
-            'end_date'=>$request->end_date,
+            'idea_start_date'=>$request->idea_start_date,
+            'idea_end_date'=>$request->idea_end_date,
+            'comment_start_date'=>$request->comment_start_date,
+            'comment_end_date'=>$request->comment_end_date,
         ]);
         return redirect()->route('qam.home');
     }
@@ -87,15 +89,16 @@ class CategoryController extends Controller
 
         $this->validate($request,[
             'name' => 'required|max:255',
-            'start_date'=>'required|before:end_date',
-            'end_date'=>'required',
-
+            'idea_start_date'=>'before:idea_end_date',
+            'comment_start_date'=>'before:comment_end_date',
         ]);
 
         $category->update([
             'name' => $request->name,
-            'start_date'=>$request->start_date,
-            'end_date'=>$request->end_date,
+            'idea_start_date'=>$request->idea_start_date,
+            'idea_end_date'=>$request->idea_end_date,
+            'comment_start_date'=>$request->comment_start_date,
+            'comment_end_date'=>$request->comment_end_date,
 
         ]);
 

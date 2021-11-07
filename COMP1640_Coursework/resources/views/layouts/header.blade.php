@@ -45,7 +45,7 @@
 
                             <li>
                                 <div class="nav-item dropdown">
-                                    <a onclick="myFunction()" class="nav-link dropbtn">Category</a>
+                                    <a onclick="myFunction()" class="nav-link dropbtn">Faculties</a>
 
                                     <div id="myDropdown" class="dropdown-content">
                                        @foreach($categories = \App\Models\Category::all() as $category)
