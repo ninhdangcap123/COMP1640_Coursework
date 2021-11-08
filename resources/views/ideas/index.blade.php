@@ -1,6 +1,6 @@
 @extends('layouts.header')
 @section('content')
---}}
+
 {{--    <a href="{{route('idea.create')}}">Create new ideas</a> <hr>--}}
 {{--    <table border="1">--}}
 {{--        <tr>--}}
