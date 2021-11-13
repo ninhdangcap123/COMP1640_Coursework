@@ -39,15 +39,15 @@
                 <div class="myform form ">
                     <div class="logo mb-3">
                         <div class="col-md-12 text-center">
-                            <h2>Create Category</h2>
+                            <h2>Create Faculty</h2>
                         </div>
                     </div>
                     <form action="{{route('qam.store')}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="Name">Category Name</label>
+                            <label for="Name">Faculty Name</label>
                             <input type="Category" name="name" class="form-control" id="Category" required
-                                   placeholder="Enter Category">
+                                   placeholder="Enter Faculty">
                         </div>
 
                         <div class="col-md-12 text-center ">

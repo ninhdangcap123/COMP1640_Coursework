@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label for="Name">Department Name</label>
                             <input type="Department" name="name" class="form-control" id="Category" required
-                                   placeholder="Enter Category">
+                                   placeholder="Enter Department">
                         </div>
 
                         <div class="col-md-12 text-center ">

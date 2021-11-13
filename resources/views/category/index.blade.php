@@ -24,6 +24,7 @@
 
 {{--@endforeach--}}
 {{--</table>--}}
+
 <div class="container">
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-lg-12 margin-tb">
@@ -32,7 +33,7 @@
             </div>
             @if(auth()->user()->user_role_id == 2)
             <div class="pull-right" style="margin-top: 20px;">
-                <a class="btn btn-success" href="{{ route('qam.create') }}">Add Category
+                <a class="btn btn-success" href="{{ route('qam.create') }}">Add Faculty
                 </a>
             </div>
             @endif

@@ -29,7 +29,7 @@
                 <div class="myform form ">
                     <div class="logo mb-3">
                         <div class="col-md-12 text-center">
-                            <h2>Update Category</h2>
+                            <h2>Update Faculty</h2>
                         </div>
                     </div>
                     <form action="{{route('qam.update', $category->id)}}" method="POST">

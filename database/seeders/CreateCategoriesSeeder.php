@@ -17,11 +17,15 @@ class CreateCategoriesSeeder extends Seeder
         $categories = [
             [
                 'name' => 'Business',
-//                'idea_id' => '1'
+
             ],
             [
-                'name' => 'Salary',
-//                'idea_id'=> '2'
+                'name' => 'IT',
+
+            ],
+            [
+                'name' => 'Marketing',
+
             ],
 
         ];

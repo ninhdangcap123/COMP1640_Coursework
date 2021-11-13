@@ -23,7 +23,7 @@ function initIsotopeFiltering() {
     }
 }
 function myFunction() {
-    var x = document.getElementById("Demo");
+    var x = document.getElementById("myDropdown");
     if (x.className.indexOf("w3-show") == -1) {
       x.className += " w3-show";
     } else { 
@@ -51,10 +51,12 @@ function myFunction() {
       }
     }
   }
+  function logoutFunction() {
+    document.getElementById("logoutDropdown").classList.toggle("show");
+  }
   function editIdeaFunction() {
     document.getElementById("editIdeaDropdown").classList.toggle("show");
   }
   function editCmtFunction() {
     document.getElementById("editCmtDropdown").classList.toggle("show");
   }
-  

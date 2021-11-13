@@ -16,13 +16,13 @@ class CreateDepartmentsSeeder extends Seeder
     {
         $departments = [
             [
-                'name' => 'Cơ sở A',
+                'name' => 'Computer Science',
             ],
             [
-                'name' => 'Công Nghệ thông tin',
+                'name' => 'Computer Network & Communication',
             ],
             [
-                'name' => 'Quản trị Kinh doanh',
+                'name' => 'Information Systems',
             ],
 
         ];

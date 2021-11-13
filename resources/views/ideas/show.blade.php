@@ -1,22 +1,6 @@
 @extends('layouts.header')
 @section('content')
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>Ideas</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
-          integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('css/home.css')}}">
-</head>
-<body>
+
 {{--<div class="container">--}}
 {{--    <div class="row justify-content-center">--}}
 {{--        <div class="col-md-8">--}}
@@ -218,18 +202,21 @@
                                       method="post">
                                     @csrf
                                     <button class="btn btn-xs text-muted has-icon" aria-hidden="true">
-                                        like
+                                        <span class="far fa-thumbs-up"> Like
                                     </button>
                                 </form>
                                 <form action="{{ route('idea.unlike', $idea->id) }}"
                                       method="post">
                                     @csrf
                                     <button class="btn text-muted has-icon" aria-hidden="true">
-                                        dislike
+                                        <span class="far fa-thumbs-down"> Dislike
                                     </button>
                                 </form>
                             </div>
-
+                            
+                            {{-- <embed src="{{URL::to('public/documents/'.$idea->product_image)}}"
+                                    width="650px" height="300px" />
+                         --}}
 {{--                            <button class="btn text-muted has-icon"><i class="far fa-thumbs-down"--}}
 {{--                                                                       aria-hidden="true"></i></button>--}}
 
@@ -238,11 +225,11 @@
                             <form method="post" action="{{route('comment.store')}}">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="content" class="form-control" />
+                                    <input type="text" name="content" class="form-control" required/>
                                     <input type="hidden" name="idea_id" value="{{ $idea->id }}" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-warning" value="Add Comment" />
+                                    <input type="submit" class="btn btn-warning" value="Add Comment" required/>
                                 </div>
                             </form>
                             @endif
@@ -319,10 +306,5 @@
     </div>
 </div>
 
-
-
-
-</body>
-</html>
-
 @endsection
+<script src="{{asset('js/custom.js')}}" defer></script>
