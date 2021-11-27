@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
+use League\Flysystem\Filesystem;
+use League\Flysystem\ZipArchive\ZipArchiveAdapter;
 use Vtiful\Kernel\Excel;
 use Webpatser\Uuid\Uuid;
 use ZipArchive;
@@ -99,18 +101,26 @@ class IdeaController extends Controller
             'category_id' => 'required',
         ]) ;
         $idea['uuid'] = (string)Uuid::generate();
+
         if ($request->hasFile('document')) {
-            $idea['document'] = $request->document->getClientOriginalName();
-            $request->document->storeAs('public/document', $idea['document']);
+            $idea['document'] = $request->file('document')->getClientOriginalName();
+//            $idea['document'] = Storage::disk('s3')->url('public/document/'. $idea['document']);
+            $idea['document'] = $request->file('document')->storeAs('public/document', $idea['document'],'s3');
+            Storage::disk('s3')->setVisibility($idea['document'], 'public');
         }
         Idea::create($idea);
-
         return redirect()->back();
     }
     public function fileDownload($uuid){
+
         $idea = Idea::where('uuid', $uuid)->firstOrFail();
-        $pathToFile = storage_path('app/public/document/' . $idea->document);
-        return response()->download($pathToFile);
+        if(Storage::disk('s3')->exists($idea->document)){
+            return Storage::disk('s3')->download($idea->document);
+        }
+        else{
+            return redirect()->back();
+        }
+
     }
 
     /**c
@@ -199,21 +209,29 @@ class IdeaController extends Controller
         $idea->save();
         return redirect()->route('idea.show',compact('id'));
     }
-    public function downloadAllAsZip(): \Symfony\Component\HttpFoundation\BinaryFileResponse
+
+    /**
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function downloadAllAsZip(): \Illuminate\Http\RedirectResponse
     {
 
         $zip = new ZipArchive;
         $fileName = 'AllFile.zip';
-        if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
-        {
-            $files = File::files(public_path('documents'));
-            foreach ($files as $key => $value) {
-                $relativeNameInZipFile = basename($value);
-                $zip->addFile($value, $relativeNameInZipFile);
+        $zip->open(public_path($fileName), ZipArchive::CREATE);
+            $files = Storage::disk('s3')->files('public/document');
+            foreach ($files as $file) {
+//                $relativeNameInZipFile = basename($value);
+//                $zip->addFile($value, $relativeNameInZipFile);
+
+                $zip->addFromString($file, file_get_contents("https://re-comp1640-documents.s3.ap-southeast-1.amazonaws.com/".urldecode($file)));
+
             }
-            $zip->close();
-        }
-        return response()->download(public_path($fileName));
+       $zip->close();
+//        return response()->download(public_path($fileName));
+
+        return back();
+
     }
     public static function writeArrayToCsvFile() : \Symfony\Component\HttpFoundation\BinaryFileResponse
     {
@@ -237,7 +255,6 @@ class IdeaController extends Controller
         $comments = Comment::all();
         $categories = Category::all();
         $users = User::all();
-
         return view('ideas.index', compact('ideas',
         'comments','categories','users'));
     }
@@ -251,11 +268,10 @@ class IdeaController extends Controller
 
     }
     public function getMostCommentIdea(){
-        $ideas = Idea::query()->withCount('comments')->paginate(5);
+        $ideas = Idea::query()->withCount('comments')->orderBy('comments_count','desc')->paginate(5);
         $comments = Comment::all();
         $categories = Category::all();
         $users = User::all();
-
         return view('ideas.index', compact('ideas',
             'comments','categories','users'));
     }
