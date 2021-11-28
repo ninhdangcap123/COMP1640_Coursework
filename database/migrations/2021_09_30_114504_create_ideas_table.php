@@ -19,7 +19,7 @@ class CreateIdeasTable extends Migration
             $table->string('description');
             $table->Integer('thumb_points')->nullable();
             $table->integer('views')->nullable()->default(0);
-            $table->uuid('uuid')->nullable();
+            $table->integer('uuid')->nullable();
             $table->unsignedInteger('user_id')->nullable();
 //            $table->unsignedInteger('tag_id')->nullable();
             $table->unsignedInteger('category_id')->nullable();
