@@ -43,19 +43,7 @@
                                 <a class="nav-link" href="{{ route('idea.index') }}">Home</a>
                             </li>
 
-                            <li>
-                                <div class="nav-item dropdown">
-                                    <a onclick="myFunction()" class="nav-link dropbtn">Faculties</a>
 
-                                    <div id="myDropdown" class="dropdown-content">
-                                       @foreach($categories = \App\Models\Category::all() as $category)
-                                            <a href="{{ route('idea.getIdeas', $category->id) }}"
-                                               class="nav-link nav-link-faded has-icon active">{{ $category->name }}</a>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('idea.myIdea') }}">MyIdeas</a>
@@ -68,6 +56,19 @@
                                         </li>
                                     @endif
                                 @else
+                                <li>
+                                    <div class="nav-item dropdown">
+                                        <a onclick="myFunction()" class="nav-link dropbtn">Faculties</a>
+
+                                        <div id="myDropdown" class="dropdown-content">
+                                            @foreach($categories = \App\Models\Category::all() as $category)
+                                                <a href="{{ route('idea.getIdeas', $category->id) }}"
+                                                   class="nav-link nav-link-faded has-icon active">{{ $category->name }}</a>
+                                            @endforeach
+
+                                        </div>
+                                    </div>
+                                </li>
                                     <li>
                                         <div class="nav-item dropdown">
                                             <a onclick="logoutFunction()" class="nav-link dropbtn">
