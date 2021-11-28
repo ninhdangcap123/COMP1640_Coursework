@@ -17,6 +17,7 @@ use League\Flysystem\ZipArchive\ZipArchiveAdapter;
 use Vtiful\Kernel\Excel;
 use Webpatser\Uuid\Uuid;
 use ZipArchive;
+use function Symfony\Component\String\b;
 
 class IdeaController extends Controller
 {
@@ -213,24 +214,17 @@ class IdeaController extends Controller
     /**
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function downloadAllAsZip(): \Illuminate\Http\RedirectResponse
+    public function downloadAllAsZip(): \Symfony\Component\HttpFoundation\BinaryFileResponse
     {
-
         $zip = new ZipArchive;
         $fileName = 'AllFile.zip';
-        $zip->open(public_path($fileName), ZipArchive::CREATE);
+        $zip->open($fileName, ZipArchive::CREATE);
             $files = Storage::disk('s3')->files('public/document');
             foreach ($files as $file) {
-//                $relativeNameInZipFile = basename($value);
-//                $zip->addFile($value, $relativeNameInZipFile);
-
-                $zip->addFromString($file, file_get_contents("https://re-comp1640-documents.s3.ap-southeast-1.amazonaws.com/".urldecode($file)));
-
+                $zip->addFromString($file, file_get_contents(Storage::disk('s3')->url($file)));
             }
-       $zip->close();
-//        return response()->download(public_path($fileName));
-
-        return back();
+        $zip->close();
+        return \response()->download($fileName);
 
     }
     public static function writeArrayToCsvFile() : \Symfony\Component\HttpFoundation\BinaryFileResponse
