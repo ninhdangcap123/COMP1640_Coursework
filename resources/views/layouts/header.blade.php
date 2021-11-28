@@ -45,9 +45,7 @@
 
 
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('idea.myIdea') }}">MyIdeas</a>
-                            </li>
+
                                 <!-- Authentication Links -->
                                 @guest
                                     @if (Route::has('login'))
@@ -68,6 +66,9 @@
 
                                         </div>
                                     </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('idea.myIdea') }}">MyIdeas</a>
                                 </li>
                                     <li>
                                         <div class="nav-item dropdown">
