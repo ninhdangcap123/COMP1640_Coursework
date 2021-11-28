@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
           integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('css/home.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/home.css')}}">
 </head>
 <body>
 <h2>Create Idea</h2>
@@ -51,19 +51,13 @@
         Select file to upload:
         <input type="file" name="document">
     </label><br>
-{{--    <div class="form-group">--}}
-{{--        <label for="document">Document:</label>--}}
-{{--        <div class="custom-file">--}}
-{{--            <input type="file" name="document" class="custom-file-input" id="document">--}}
-{{--            <label class="custom-file-label" for="document">Choose file</label>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+
 
     <button type="submit">Create idea</button>
 
 </form>
 </body>
-<script src="{{asset('js/custom.js')}}" defer></script>
+<script src="{{secure_asset('js/custom.js')}}" defer></script>
 <!-- Isotope File -->
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
 </html>

@@ -122,11 +122,7 @@
                                 </div>
 
                             </div>
-{{--                            <embed src="{{ asset("storage/document/$idea->document") }}"--}}
-{{--                                   width="800px" height="300px" />--}}
-{{--                            <iframe src="{{ url('storage/app/ideas'.$idea->document) }}" frameborder="0"></iframe>--}}
-{{--                            <button class="btn btn-xs text-muted has-icon"><i class="far fa-thumbs-up"--}}
-{{--                                                                              aria-hidden="true"></i></button>--}}
+
                             <div >
                                 <form action="{{ route('idea.like', $idea->id) }}"
                                       method="post">
@@ -144,11 +140,7 @@
                                 </form>
                             </div>
 
-                            {{-- <embed src="{{URL::to('public/documents/'.$idea->product_image)}}"
-                                    width="650px" height="300px" />
-                         --}}
-{{--                            <button class="btn text-muted has-icon"><i class="far fa-thumbs-down"--}}
-{{--                                                                       aria-hidden="true"></i></button>--}}
+
 
                             <p>Display Comments</p>
                             @if(now()->lte(date('Y-m-d H:i:s', strtotime($idea->categories->comment_end_date))))
@@ -237,4 +229,4 @@
 </div>
 
 @endsection
-<script src="{{asset('js/custom.js')}}" defer></script>
+<script src="{{secure_asset('js/custom.js')}}" defer></script>

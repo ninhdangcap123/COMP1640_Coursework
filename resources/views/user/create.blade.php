@@ -14,50 +14,15 @@
           integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/login.css') }}">
     <!-- <script src="js/jquery-3.6.0.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"> -->
 </head>
 <body>
-{{--<form action="{{route('admin.store')}}" method="post">--}}
-{{--    @csrf--}}
-{{--    <label for="Name">--}}
-{{--        Name--}}
-{{--        <input type="text" name="name">--}}
-{{--    </label><br><br>--}}
-{{--    <label for="Email">--}}
-{{--        Email:--}}
-{{--        <input type="text" name="email">--}}
-{{--    </label><br><br>--}}
-{{--    <label for="Password">--}}
-{{--        Password:--}}
-{{--        <input type="password" name="password">--}}
-{{--    </label><br><br>--}}
-{{--    <label for="Role">--}}
-{{--        Role:--}}
-{{--        <select name="user_role_id" id="">--}}
-{{--            <option value="2">QAM</option>--}}
-{{--            <option value="3">QAC</option>--}}
-{{--            <option value="4">Staff</option>--}}
-{{--            <option value="5">Guest</option>--}}
-{{--        </select>--}}
 
-{{--    </label><br><br>--}}
-{{--    <label for="Role">--}}
-{{--       Department:--}}
-{{--        <select name="department_id" id="">--}}
-{{--            @foreach($departments as $department)--}}
-{{--                <option value="{{$department->id}}">{{$department->name}}</option>--}}
-{{--            @endforeach--}}
-{{--        </select>--}}
-
-{{--    </label><br><br>--}}
-
-{{--    <button type="submit">Create user</button>--}}
-{{--</form>--}}
 <section class="h-50 h-custom gradient-custom-2">
     <div class="container h-50">
         <div class="row d-flex justify-content-center align-items-center h-50">
@@ -137,7 +102,7 @@
 
 </section>
 
-<script src="{{ asset('js/login.js') }}"></script>
+<script src="{{ secure_asset('js/login.js') }}"></script>
 </body>
 </html>
 @endsection

@@ -237,7 +237,7 @@
     </div>
 </div>
 </body>
-<script src="{{asset('js/custom.js')}}" defer></script>
+<script src="{{secure_asset('js/custom.js')}}" defer></script>
 <!-- Isotope File -->
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
 </html>
