@@ -18,12 +18,9 @@ class CreateIdeasSeeder extends Seeder
           [
               'title' => 'Idea1',
               'description' => 'Test1',
-//              'thumb_points' => '10',
               'views' => '10',
               'user_id' => '1',
               'category_id'=>'1',
-              'uuid'=>'1',
-//              'comment_id'=>'1',
               'created_at' => now(),
 
 
@@ -31,12 +28,9 @@ class CreateIdeasSeeder extends Seeder
             [
                 'title' => 'Idea2',
                 'description' => 'Test2',
-//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '2',
                 'category_id'=>'2',
-                'uuid'=>'1',
-//                'comment_id'=>'1',
                 'created_at' => now(),
 
 
@@ -44,12 +38,9 @@ class CreateIdeasSeeder extends Seeder
             [
                 'title' => 'Idea3',
                 'description' => 'Test3',
-//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '3',
                 'category_id'=>'1',
-                'uuid'=>'1',
-//                'comment_id'=>'1',
                 'created_at' => now(),
 
 
@@ -57,12 +48,9 @@ class CreateIdeasSeeder extends Seeder
             [
                 'title' => 'Idea4',
                 'description' => 'Test4',
-//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
-                'uuid'=>'1',
-//                'comment_id'=>'1',
                 'created_at' => now(),
 
 
@@ -70,24 +58,18 @@ class CreateIdeasSeeder extends Seeder
             [
                 'title' => 'Idea5',
                 'description' => 'Test5',
-//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
-                'uuid'=>'1',
-//                'comment_id'=>'1',
                 'created_at' => now(),
 
 
             ],[
                 'title' => 'Idea6',
                 'description' => 'Test6',
-//                'thumb_points' => '11',
                 'views' => '12',
                 'user_id' => '4',
                 'category_id'=>'2',
-                'uuid'=>'1',
-//                'comment_id'=>'1',
                 'created_at' => now(),
 
 
