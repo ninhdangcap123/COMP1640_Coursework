@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Webpatser\Uuid\Uuid;
 
 class CreateIdeasSeeder extends Seeder
 {
@@ -11,6 +12,7 @@ class CreateIdeasSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
+     * @throws \Exception
      */
     public function run()
     {
@@ -20,6 +22,7 @@ class CreateIdeasSeeder extends Seeder
               'description' => 'Test1',
               'views' => '10',
               'user_id' => '1',
+              'uuid'=> Uuid::generate(),
               'category_id'=>'1',
               'created_at' => now(),
 
@@ -30,6 +33,7 @@ class CreateIdeasSeeder extends Seeder
                 'description' => 'Test2',
                 'views' => '12',
                 'user_id' => '2',
+                'uuid'=> Uuid::generate(),
                 'category_id'=>'2',
                 'created_at' => now(),
 
@@ -40,6 +44,7 @@ class CreateIdeasSeeder extends Seeder
                 'description' => 'Test3',
                 'views' => '12',
                 'user_id' => '3',
+                'uuid'=> Uuid::generate(),
                 'category_id'=>'1',
                 'created_at' => now(),
 
@@ -50,6 +55,7 @@ class CreateIdeasSeeder extends Seeder
                 'description' => 'Test4',
                 'views' => '12',
                 'user_id' => '4',
+                'uuid'=> Uuid::generate(),
                 'category_id'=>'2',
                 'created_at' => now(),
 
@@ -60,6 +66,7 @@ class CreateIdeasSeeder extends Seeder
                 'description' => 'Test5',
                 'views' => '12',
                 'user_id' => '4',
+                'uuid'=> Uuid::generate(),
                 'category_id'=>'2',
                 'created_at' => now(),
 
@@ -69,6 +76,7 @@ class CreateIdeasSeeder extends Seeder
                 'description' => 'Test6',
                 'views' => '12',
                 'user_id' => '4',
+                'uuid'=> Uuid::generate(),
                 'category_id'=>'2',
                 'created_at' => now(),
 
