@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <!--  All snippets are MIT license https://bootdey.com/license -->
     <title>1640</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-lg-12 text-right">
                     <div class="logo_container">
-                        <a class="nav-link" href="{{ route('home') }}"><img src="{{asset('img/logo.jpg')}}" class="logo" alt="logo"></a>
+                        <a class="nav-link" href="{{ route('home') }}"><img src="{{secure_asset('img/logo.jpg')}}" class="logo" alt="logo"></a>
                     </div>
                     <nav class="navbar">
                         <ul class="navbar_menu">
