@@ -5,11 +5,11 @@
             <div class="media idea-item">
 
                 <div class="media-body ml-3">
-                    <a href="javascript:void(0)" class="text-secondary"><strong>{{ $comment->users->name }}</strong></a>
+                    <a href="javascript:void(0)" class="text-secondary"><strong>{{ $comment->users['name'] }}</strong></a>
                     <small class="text-muted ml-2">{{ $comment->created_at }}</small>
                     <div class="mt-3 font-size-sm">
                         <p>{{ $comment->content }}</p>
-                        @if(now()->lte(date('Y-m-d H:i:s', strtotime($idea->categories->comment_end_date))))
+                        @if(now()->lte(date('Y-m-d H:i:s', strtotime($idea->categories['comment_end_date']))))
                         <form method="post" action="{{ route('comment.reply.store') }}">
                             @csrf
                             <div class="form-group">

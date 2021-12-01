@@ -123,7 +123,7 @@
                                             <p class="text-secondary">
                                                 {{ $idea->description }}
                                                 <br>
-                                                #{{ $idea->categories->name }}
+                                                #{{ $idea->categories['name'] }}
                                                 @if($idea->created_at->lte($idea->categories->idea_end_date))
                                                     <b>Active</b>
                                                 @else
