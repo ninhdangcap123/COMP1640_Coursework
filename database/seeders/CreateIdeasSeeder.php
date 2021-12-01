@@ -61,17 +61,8 @@ class CreateIdeasSeeder extends Seeder
 
 
             ],
+    
             [
-                'title' => 'Idea5',
-                'description' => 'Test5',
-                'views' => '12',
-                'user_id' => '4',
-                'uuid'=> Uuid::generate(),
-                'category_id'=>'2',
-                'created_at' => now(),
-
-
-            ],[
                 'title' => 'Idea6',
                 'description' => 'Test6',
                 'views' => '12',
