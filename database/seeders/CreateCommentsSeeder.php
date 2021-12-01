@@ -16,12 +16,12 @@ class CreateCommentsSeeder extends Seeder
     {
 
 //        DB::table('comments')->insert($comments);
-        foreach ((range(1, 6)) as $index) {
+        foreach ((range(1, 5)) as $index) {
             DB::table('comments')->insert(
                 [
-                    'user_id' => rand(1, 6),
+                    'user_id' => rand(1, 5),
                     'content' => 'test',
-                    'commentable_id' => rand(1, 6),
+                    'commentable_id' => rand(1, 5),
                     'commentable_type' => rand(0, 1) == 1 ? 'App\Models\Idea' : 'App\Models\User',
                     'created_at' => now(),
                 ]
